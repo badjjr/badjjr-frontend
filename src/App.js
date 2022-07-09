@@ -3,17 +3,11 @@ import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
 import { Routes, Route, Link } from 'react-router-dom';
-<<<<<<< HEAD
 import DisplayQuiz from './components/DisplayQuiz';
 import Header from './components/Header';
 import Score from './components/Score';
-import NewQuizForm from './components/NewQuizForm/NewQuizForm';
-import NewQuizQuestions from './components/NewQuizQuestions/NewQuizQuestions';
-import NewQuiz from './components/NewQuiz';
-=======
-import QuizForm from './components/QuizForm';
-import QuizQuestions from './components/QuizQuestions';
->>>>>>> 8d64db0 (Rename files)
+import QuizForm from './components/QuizForm/QuizForm';
+import QuizQuestions from './components/QuizQuestions/QuizQuestions';
 
 function App() {
 	const [quizAnswers, setQuizAnswers] = useState([]);
