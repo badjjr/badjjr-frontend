@@ -11,10 +11,6 @@ import Header from './components/Header';
 import Score from './components/Score';
 import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
-import DisplayQuiz from './components/DisplayQuiz';
-import Header from './components/Header';
-import Score from './components/Score';
-
 
 function App() {
 	const [quizAnswers, setQuizAnswers] = useState([]);
