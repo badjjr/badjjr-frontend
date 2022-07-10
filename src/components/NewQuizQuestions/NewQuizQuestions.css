@@ -1,0 +1,16 @@
+.questions-form {
+	display: flex;
+	flex-direction: column;
+	margin: 0 50px;
+}
+
+.question-title {
+	margin-top: 15px;
+	margin-bottom: 0;
+	padding: 5px 5px;
+	background-color: lightgray;
+}
+
+.questions-button {
+	margin-top: 15px;
+}
