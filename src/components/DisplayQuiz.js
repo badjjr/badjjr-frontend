@@ -26,7 +26,7 @@ const data = {
 		},
 		{
 			type: 'boolean',
-			question: 'Express is a strict frame',
+			question: 'Express is a strict framework.',
 			answerChoices: ['false', 'true'],
 			correctAnswer: 'false',
 			incorrectAnswer: ['true'],
@@ -34,7 +34,7 @@ const data = {
 		{
 			type: 'multiple choice',
 			question:
-				'What is the correct code snipped to checkout a new branch in Git name dev?',
+				'Which of these is the correct code snippet to checkout a new git branch named dev?',
 			answerChoices: [
 				'git checkout -b dev',
 				'git checkout dev',
@@ -131,19 +131,18 @@ function DisplayQuiz(props) {
 	}, []);
 	return (
 		<form className='take-quiz-form'>
-			<h2>{quizData.title}</h2>
-			<div className='quiz-question'>
+			<h2 className='quiz-title'>{quizData.title}</h2>
 				{quizQuestions
 					? quizQuestions.map((question, index) => {
 							return (
-								<div>
-									<h3>
+								<div className='quiz-question-container'>
+									<h3 className='quiz-question-number'>
 										Question {index + 1} of {quizQuestions.length}
 									</h3>
-									<label htmlFor={`${index}`}>{question.question}</label>
+									<label className='quiz-question' htmlFor={`${index}`}>{question.question}</label>
                                     {question.answerChoices.map((choice) => {
                                         return (
-                                            <div>
+                                            <div className='quiz-answer-choice'>
                                                 <input type="radio" name={`${index}`} value={choice}/>{choice}
                                             </div>
                                         )
@@ -151,8 +150,8 @@ function DisplayQuiz(props) {
 								</div>
 							);
 					  })
-					: 'Loading quiz...'}
-			</div>
+					: <div>'Loading quiz...'</div>}
+            <button className='quiz-submit-button' type="submit">Submit</button>
 		</form>
 	);
 }
