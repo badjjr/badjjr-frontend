@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
@@ -45,28 +44,6 @@ function App() {
 			</div>
 		</DataContext.Provider>
 	);
-=======
-import './App.css';
-import React from 'react';
-import Home from './Components/Home';
-import Categories from './Components/Categories';
-import { Routes, Route, Link } from 'react-router-dom';
-
-function App() {
-  return (
-    <>
-      <h1>
-        <Link to='/'><img src="public/badger.png" alt="Badger Icon" /></Link>
-      </h1>
-      <main>
-        <Routes>
-          <Route path = '/' element = { <Home /> } />
-          <Route path = '/categories' element = { <Categories /> } />
-        </Routes>
-      </main>
-    </>
-  )
->>>>>>> ef5930c (Set up routes for home and categories components)
 }
 
 export default App;
