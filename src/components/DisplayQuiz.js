@@ -1,4 +1,5 @@
 import React from 'react';
+import '/Users/jalynnjk/Desktop/sei/projects/unit-3/badjjr-frontend/src/styles/displayQuizStyle.css';
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -136,9 +137,9 @@ function DisplayQuiz(props) {
 					? quizQuestions.map((question, index) => {
 							return (
 								<div className='quiz-question-container'>
-									<h3 className='quiz-question-number'>
-										Question {index + 1} of {quizQuestions.length}
-									</h3>
+									<h4 className='quiz-question-number'>
+										Question <span className='question-number'>{index + 1}</span> of {quizQuestions.length}
+									</h4>
 									<label className='quiz-question' htmlFor={`${index}`}>{question.question}</label>
                                     {question.answerChoices.map((choice) => {
                                         return (
