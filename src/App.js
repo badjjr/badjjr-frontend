@@ -12,6 +12,14 @@ import NewQuizQuestions from './components/NewQuizQuestions/NewQuizQuestions';
 function App() {
 	const [quizAnswers, setQuizAnswers] = useState([]);
   const [numOfQuestions, setNumOfQuestions] = useState('');
+	// Use Context to share the following states between components.
+	const [quizFormData, setQuizFormData] = useState({
+		title: '',
+		numOfQuestions: 0,
+		category: '',
+	});
+
+	const [quizQuestions, setQuizQuestions] = useState([]);
 
 	return (
 		<DataContext.Provider
@@ -19,7 +27,11 @@ function App() {
 				quizAnswers,
         setQuizAnswers,
         numOfQuestions, 
-        setNumOfQuestions
+        setNumOfQuestions,
+        quizFormData,
+				setQuizFormData,
+				quizQuestions,
+				setQuizQuestions,
 			}}>
 			<div className='App'>
 				<Header />
