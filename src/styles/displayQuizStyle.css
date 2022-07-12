@@ -27,6 +27,7 @@
 .quiz-answer-choice {
     text-align: left;
     align-self: left;
+    display: flex;
 }
 .quiz-submit-button {
     background-color: green;
