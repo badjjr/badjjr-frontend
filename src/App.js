@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Score from './components/Score';
 import NewQuizForm from './components/NewQuizForm/NewQuizForm';
 import NewQuizQuestions from './components/NewQuizQuestions/NewQuizQuestions';
+import NewQuiz from './components/NewQuiz';
 
 function App() {
 	const [quizAnswers, setQuizAnswers] = useState([]);
@@ -39,9 +40,8 @@ function App() {
 					<Route path='/quiz/:id' element={<DisplayQuiz />} />
 					<Route path='/score' element={<Score />} />
           <Route path='/new-quiz-form' element={<NewQuizForm />} />
-						<Route
-							path='/new-quiz-questions'
-							element={<NewQuizQuestions />}></Route>
+					<Route path='/new-quiz-questions' element={<NewQuizQuestions />} />
+          <Route path='/new-quiz' element={<NewQuiz />} />
 				</Routes>
         </div>
         </ DataContext.Provider>
