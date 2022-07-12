@@ -17,22 +17,37 @@
 	justify-content: space-evenly;
 }
 
+<<<<<<< HEAD
 #add-answer-button,
 #delete-answer-button {
+=======
+.add-answer-button,
+.delete-answer-button {
+>>>>>>> 8d64db0 (Rename files)
 	width: 50%;
 	margin-top: 15px;
 }
 
+<<<<<<< HEAD
 #delete-answer-button {
 	background-color: rgb(125, 0, 0);
 	border-color: rgb(125, 0, 0);
 }
 
 #delete-answer-button:hover {
+=======
+.delete-answer-button {
+	background-color: maroon;
+	border-color: maroon;
+}
+
+.delete-answer-button:hover {
+>>>>>>> 8d64db0 (Rename files)
 	background-color: rgb(83, 0, 0);
 	border-color: rgb(83, 0, 0);
 }
 
+<<<<<<< HEAD
 #submit-questions-button {
 	margin-top: 15px;
 	background-color: rgb(0, 109, 0);
@@ -42,4 +57,8 @@
 #submit-questions-button:hover {
 	background-color: rgb(0, 78, 0);
 	border-color: rgb(0, 78, 0);
+=======
+.submit-questions-button {
+	margin-top: 15px;
+>>>>>>> 8d64db0 (Rename files)
 }
