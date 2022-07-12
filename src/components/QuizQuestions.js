@@ -1,18 +1,18 @@
-import '../styles/newQuizQuestions.css';
-import { useContext, useState } from 'react';
+import '../styles/quizQuestions.css';
+import { useContext } from 'react';
 import { DataContext } from '../dataContext';
 // import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function NewQuizQuestions() {
+function QuizQuestions() {
 	const { quizQuestions, setQuizQuestions } = useContext(DataContext);
 
 	// const navigate = useNavigate();
 
-	// By default, there is an input field for just one incorrect answer.
-	// Allow the user to add an input field for another incorrect answer.
 	const handleIncorrectAnswersAdd = (questionIndex) => {
+		// By default, there is an input field for just one incorrect answer.
+		// Allow the user to add an input field for another incorrect answer.
 		const updatedIncorrectAnswers = quizQuestions.map((question, index) => {
 			// The question to which the user is adding incorrect answers can be
 			// identified by its questionIndex.
@@ -60,7 +60,8 @@ function NewQuizQuestions() {
 			};
 		});
 		setQuizQuestions(updatedQuestions);
-		// navigate('/new-quiz');
+		console.log(updatedQuestions);
+		// navigate('/display-quiz');
 	};
 
 	return (
@@ -113,19 +114,26 @@ function NewQuizQuestions() {
 							  })
 							: null}
 
-						<Button
-							type='button'
-							onClick={() => handleIncorrectAnswersAdd(questionIndex)}>
-							+
-						</Button>
-						<Button
-							type='button'
-							onClick={() => handleIncorrectAnswersDelete(questionIndex)}>
-							-
-						</Button>
+						<div className='questions-buttons'>
+							<Button
+								type='button'
+								className='add-answer-button'
+								onClick={() => handleIncorrectAnswersAdd(questionIndex)}>
+								Add answer choice
+							</Button>
+							<Button
+								type='button'
+								className='delete-answer-button'
+								onClick={() => handleIncorrectAnswersDelete(questionIndex)}>
+								Delete answer choice
+							</Button>
+						</div>
 					</div>
 				))}
-				<Button variant='primary' type='submit' className='questions-button'>
+				<Button
+					variant='primary'
+					type='submit'
+					className='submit-questions-button'>
 					Submit
 				</Button>
 			</Form>
@@ -133,4 +141,4 @@ function NewQuizQuestions() {
 	);
 }
 
-export default NewQuizQuestions;
+export default QuizQuestions;

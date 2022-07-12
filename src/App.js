@@ -3,12 +3,17 @@ import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
 import { Routes, Route, Link } from 'react-router-dom';
+<<<<<<< HEAD
 import DisplayQuiz from './components/DisplayQuiz';
 import Header from './components/Header';
 import Score from './components/Score';
 import NewQuizForm from './components/NewQuizForm/NewQuizForm';
 import NewQuizQuestions from './components/NewQuizQuestions/NewQuizQuestions';
 import NewQuiz from './components/NewQuiz';
+=======
+import QuizForm from './components/QuizForm';
+import QuizQuestions from './components/QuizQuestions';
+>>>>>>> 8d64db0 (Rename files)
 
 function App() {
 	const [quizAnswers, setQuizAnswers] = useState([]);
@@ -39,8 +44,8 @@ function App() {
 				<Routes>
 					<Route path='/quiz/:id' element={<DisplayQuiz />} />
 					<Route path='/score' element={<Score />} />
-          <Route path='/new-quiz-form' element={<NewQuizForm />} />
-					<Route path='/new-quiz-questions' element={<NewQuizQuestions />} />
+          <Route path='/quiz-form' element={<QuizForm />} />
+					<Route path='/quiz-questions' element={<QuizQuestions />} />
           <Route path='/new-quiz' element={<NewQuiz />} />
 				</Routes>
         </div>
