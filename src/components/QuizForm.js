@@ -1,11 +1,11 @@
-import '../styles/newQuizForm.css';
+import '../styles/quizForm.css';
 import { useContext } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function NewQuizForm() {
+function QuizForm() {
 	const { setQuizFormData, setQuizQuestions } = useContext(DataContext);
 	const navigate = useNavigate();
 
@@ -29,8 +29,8 @@ function NewQuizForm() {
 				incorrectAnswers: [''],
 			})
 		);
-		// Navigate to the page holding the NewQuizQuestions component.
-		navigate('/new-quiz-questions');
+		// Navigate to the page holding the QuizQuestions component.
+		navigate('/quiz-questions');
 	};
 
 	return (
@@ -69,4 +69,4 @@ function NewQuizForm() {
 	);
 }
 
-export default NewQuizForm;
+export default QuizForm;
