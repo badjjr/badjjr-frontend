@@ -13,7 +13,7 @@ import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
 import Header from './components/Header';
 import Score from './components/Score';
-import NewQuizForm from './components/NewQuizForm/NewQuizForm';
+
 
 function App() {
 	const [quizAnswers, setQuizAnswers] = useState([]);
