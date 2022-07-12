@@ -1,6 +1,6 @@
-import './NewQuizForm.css';
+import '../styles/newQuizForm.css';
 import { useContext } from 'react';
-import { DataContext } from '../../dataContext';
+import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -13,8 +13,6 @@ function NewQuizForm() {
 		e.preventDefault();
 		// Store user input for '# of Questions' in a variable for easy referral.
 		const numOfQuestions = e.currentTarget['num-of-questions'].value;
-		// Sync form data to React context so that all components can access the
-		// updated information.
 		setQuizFormData({
 			title: e.currentTarget['title'].value,
 			numOfQuestions,
@@ -26,8 +24,9 @@ function NewQuizForm() {
 			new Array(parseInt(numOfQuestions)).fill({
 				type: '',
 				question: '',
+				answerChoices: [''],
 				correctAnswer: '',
-				incorrectAnswer: [''],
+				incorrectAnswers: [''],
 			})
 		);
 		// Navigate to the page holding the NewQuizQuestions component.
