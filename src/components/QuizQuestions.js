@@ -42,18 +42,24 @@ function QuizQuestions() {
 
 	const handleQuestionsSubmit = (e) => {
 		e.preventDefault();
-		const updatedQuestions = quizQuestions.map((question) => {
-			const correctAnswerValue = e.currentTarget['correct-answer'].value;
-			// Grab the values of the incorrect answers and store them in a variable.
+		const updatedQuestions = quizQuestions.map((question, questionIndex) => {
+			// Grab the value of the correct answer and store it in a variable to be
+			// used in answerChoices.
+			const correctAnswerValue =
+				e.target[`correct-answer-${questionIndex}`].value;
+			// Grab the values of all incorrect answers and store them in a variable
+			// to be used in answerChoices.
 			const incorrectAnswersValues = question.incorrectAnswers.map(
-				(item, index) => {
-					return e.currentTarget[`incorrect-answer-${index}`].value;
+				(item, incorrectAnswerIndex) => {
+					return e.target[
+						`incorrect-answer-${questionIndex}-${incorrectAnswerIndex}`
+					].value;
 				}
 			);
 
 			return {
-				type: e.currentTarget['type'].value,
-				question: e.currentTarget['question'].value,
+				type: e.target[`type-${questionIndex}`].value,
+				question: e.target[`question-${questionIndex}`].value,
 				answerChoices: [correctAnswerValue, ...incorrectAnswersValues],
 				correctAnswer: correctAnswerValue,
 				incorrectAnswers: incorrectAnswersValues,
@@ -61,7 +67,8 @@ function QuizQuestions() {
 		});
 		setQuizQuestions(updatedQuestions);
 		console.log(updatedQuestions);
-		// navigate('/display-quiz');
+		// Navigate to the page that displays the quiz in its entirety.
+		// navigate('/quiz/:id');
 	};
 
 	return (
@@ -73,7 +80,7 @@ function QuizQuestions() {
 						<h2 className='question-title'>Question {questionIndex + 1}</h2>
 						<Form.Group>
 							<Form.Label>Question Type</Form.Label>
-							<Form.Select id='type'>
+							<Form.Select id={`type-${questionIndex}`}>
 								<option value='multiple choice'>Multiple Choice</option>
 								<option value='boolean'>True / False</option>
 							</Form.Select>
@@ -82,7 +89,7 @@ function QuizQuestions() {
 							<Form.Label htmlFor='question'>Question</Form.Label>
 							<Form.Control
 								type='text'
-								id='question'
+								id={`question-${questionIndex}`}
 								placeholder='Enter a question or statement'
 								required
 							/>
@@ -91,7 +98,7 @@ function QuizQuestions() {
 							<Form.Label htmlFor='correct-answer'>Correct Answer</Form.Label>
 							<Form.Control
 								type='text'
-								id='correct-answer'
+								id={`correct-answer-${questionIndex}`}
 								placeholder='Enter the correct answer'
 								required
 							/>
@@ -105,7 +112,7 @@ function QuizQuestions() {
 											<Form.Label>Incorrect Answer</Form.Label>
 											<Form.Control
 												type='text'
-												id={`incorrect-answer-${incorrectAnswerIndex}`}
+												id={`incorrect-answer-${questionIndex}-${incorrectAnswerIndex}`}
 												placeholder='Enter an incorrect answer'
 												required
 											/>

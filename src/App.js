@@ -21,7 +21,7 @@ function App() {
 	// Use Context to share the following states between components.
 	const [quizFormData, setQuizFormData] = useState({
 		title: '',
-		numOfQuestions: 0,
+		numberOfQuestions: 0,
 		category: '',
 	});
 
