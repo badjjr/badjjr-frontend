@@ -3,8 +3,9 @@ import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
 import { Routes, Route, Link } from 'react-router-dom';
-import NewQuizForm from './components/NewQuizForm/NewQuizForm';
-import NewQuizQuestions from './components/NewQuizQuestions/NewQuizQuestions';
+import NewQuizForm from './components/NewQuizForm';
+import NewQuizQuestions from './components/NewQuizQuestions';
+import NewQuiz from './components/NewQuiz';
 
 function App() {
 	// Use Context to share the following states between components.
@@ -33,9 +34,8 @@ function App() {
 				<main>
 					<Routes>
 						<Route path='/new-quiz-form' element={<NewQuizForm />} />
-						<Route
-							path='/new-quiz-questions'
-							element={<NewQuizQuestions />}></Route>
+						<Route path='/new-quiz-questions' element={<NewQuizQuestions />} />
+						<Route path='/new-quiz' element={<NewQuiz />} />
 					</Routes>
 				</main>
 			</div>
