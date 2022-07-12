@@ -27,7 +27,11 @@
 .quiz-answer-choice {
     text-align: center;
     align-self: left;
+    display: flex;
 }
 .quiz-submit-button {
     background-color: green;
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
 }
