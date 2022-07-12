@@ -16,21 +16,21 @@ const data = {
 				'What programming language does the MERN stack all have in common?',
 			answerChoices: ['JavaScript', 'Python', 'C#', 'JSON'],
 			correctAnswer: 'JavaScript',
-			incorrectAnswer: ['Python', 'C#', 'JSON'],
+			incorrectAnswers: ['Python', 'C#', 'JSON'],
 		},
 		{
 			type: 'multiple choice',
 			question: 'What was the original name of JavaScript?',
 			answerChoices: ['Mocha', 'Java', 'spiderMonkey', 'DynamicScript'],
 			correctAnswer: 'Mocha',
-			incorrectAnswer: ['Java', 'spiderMonkey', 'DynamicScript'],
+			incorrectAnswers: ['Java', 'spiderMonkey', 'DynamicScript'],
 		},
 		{
 			type: 'boolean',
 			question: 'Express is a strict framework.',
 			answerChoices: ['false', 'true'],
 			correctAnswer: 'false',
-			incorrectAnswer: ['true'],
+			incorrectAnswers: ['true'],
 		},
 		{
 			type: 'multiple choice',
@@ -43,7 +43,7 @@ const data = {
 				'git create branch dev',
 			],
 			correctAnswer: 'git checkout -b dev',
-			incorrectAnswer: [
+			incorrectAnswers: [
 				'git checkout dev',
 				'git checkout new dev',
 				'git create branch dev',
@@ -60,21 +60,21 @@ const data = {
 				'Undefined, Undefined',
 			],
 			correctAnswer: 'False, False',
-			incorrectAnswer: ['True, False', 'True, True', 'Undefined, Undefined'],
+			incorrectAnswers: ['True, False', 'True, True', 'Undefined, Undefined'],
 		},
 		{
 			type: 'multiple choice',
 			question: 'Which company created React?',
 			answerChoices: ['Facebook', 'Google', 'Microsoft', 'Amazon'],
 			correctAnswer: 'Facebook',
-			incorrectAnswer: ['Google', 'Microsoft', 'Amazon'],
+			incorrectAnswers: ['Google', 'Microsoft', 'Amazon'],
 		},
 		{
 			type: 'boolean',
 			question: 'The API is where the application data is stored.',
 			answerChoices: ['False', 'True'],
 			correctAnswer: 'False',
-			incorrectAnswer: ['True'],
+			incorrectAnswers: ['True'],
 		},
 		{
 			type: 'multiple choice',
@@ -82,7 +82,7 @@ const data = {
 				'In React, the parent passes data to its child components in the form of:',
 			answerChoices: ['Props', 'Arguments', 'State', 'Parameters'],
 			correctAnswer: 'Props',
-			incorrectAnswer: ['Arguments', 'State', 'Parameters'],
+			incorrectAnswers: ['Arguments', 'State', 'Parameters'],
 		},
 		{
 			type: 'multiple choice',
@@ -95,7 +95,7 @@ const data = {
 			],
 			correctAnswer:
 				'A Node CLI tool that evaluates and returns JavaScript code expressions in the terminal.',
-			incorrectAnswer: [
+			incorrectAnswers: [
 				'The snapshot taken of the Virtual Dom in React right before an update is made',
 				'Response Evaluation Process Line used in asynchronous error handling with the Try/Catch syntax',
 				'A tech-stack utilizing React, Express, Python, and LiveScript',
@@ -106,7 +106,7 @@ const data = {
 			question: 'If you were to run typeOf on NaN it would return number.',
 			answerChoices: ['True', 'False'],
 			correctAnswer: 'True',
-			incorrectAnswer: ['False'],
+			incorrectAnswers: ['False'],
 		},
 	],
 };
@@ -133,26 +133,39 @@ function DisplayQuiz(props) {
 	return (
 		<form className='take-quiz-form'>
 			<h2 className='quiz-title'>{quizData.title}</h2>
-				{quizQuestions
-					? quizQuestions.map((question, index) => {
-							return (
-								<div className='quiz-question-container'>
-									<h4 className='quiz-question-number'>
-										Question <span className='question-number'>{index + 1}</span> of {quizQuestions.length}
-									</h4>
-									<label className='quiz-question' htmlFor={`${index}`}>{question.question}</label>
-                                    {question.answerChoices.map((choice) => {
-                                        return (
-                                            <div className='quiz-answer-choice'>
-                                                <input type="radio" name={`${index}`} value={choice}/>{choice}
-                                            </div>
-                                        )
-                                    })}
-								</div>
-							);
-					  })
-					: <div>'Loading quiz...'</div>}
-            <button className='quiz-submit-button' type="submit">Submit</button>
+			{quizQuestions ? (
+				quizQuestions.map((question, index) => {
+					return (
+						<div className='quiz-question-container'>
+							<h4 className='quiz-question-number'>
+								Question <span className='question-number'>{index + 1}</span> of{' '}
+								{quizQuestions.length}
+							</h4>
+							<label className='quiz-question' htmlFor={`${index}`}>
+								{question.question}
+							</label>
+							{question.answerChoices.map((choice) => {
+								return (
+									<div className='quiz-answer-choice'>
+										<input
+											className='input-button'
+											type='radio'
+											name={`${index}`}
+											value={choice}
+										/>
+										<span className='input-text'>{choice}</span>
+									</div>
+								);
+							})}
+						</div>
+					);
+				})
+			) : (
+				<div>'Loading quiz...'</div>
+			)}
+			<button className='quiz-submit-button' type='submit'>
+				Submit
+			</button>
 		</form>
 	);
 }
