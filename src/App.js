@@ -7,6 +7,7 @@ import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
 import DisplayQuiz from './components/DisplayQuiz'
 import Header from './components/Header'
+import Score from './components/Score'
 
 function App() {
 	// Use Context to share the following states between components.
@@ -29,7 +30,7 @@ function App() {
 			<div>
 				<header>
 					<h1>
-						<Link to='/'>🦡</Link>
+					<Header />
 					</h1>
 				</header>
 				<main>
@@ -37,12 +38,12 @@ function App() {
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
             <Route path='/quiz/' element={<DisplayQuiz />} />
+            <Route path='/score' element={<Score />} />
 					</Routes>
 				</main>
 			</div>
 		</DataContext.Provider>
 	);
-
 }
 
 export default App;
