@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+.welcome-msg {
+  display: flex;
+  justify-content: center;
+}
+
+.home-list {
+  display: grid;
+  grid-template-rows: 70px 70px;
+  grid-template-columns: 150px;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-item {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  list-style-type: none;
+  font-size: 14px;
+  text-align: center;
+}
