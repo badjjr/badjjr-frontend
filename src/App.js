@@ -2,6 +2,11 @@
 import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
+import React from 'react';
+import Home from './Components/Home';
+import Create from './Components/Create';
+import CategoriesList from './Components/CategoriesList';
+import Categories from './Components/Categories';
 import { Routes, Route, Link } from 'react-router-dom';
 import React from 'react';
 import Home from './components/Home';
