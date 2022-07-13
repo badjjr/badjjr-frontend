@@ -30,7 +30,7 @@ function CategoriesList() {
     <section className = "category-container">
       {
         newArr.map((category) => (
-          <Link to = {`/category/${category}`} className = "category-list" >
+          <Link to = {`/categories/${category}`} className = "category-list" >
             <ul key = { category } >
               <li className = "category-item">
                 { category.toUpperCase() }
@@ -41,18 +41,7 @@ function CategoriesList() {
       }
 
 
-    </section>
-    
-  //   <section>
-  //     <ul className = "category-list">
-  //       <Link to = "/category/animals" className = "category-item"><li>ANIMALS</li></Link>
-  //       <Link to = "/category/geo" className = "category-item"><li>GEOGRAPHY</li></Link>
-  //       <Link to = "/category/seir" className = "category-item"><li>SEIR-59</li></Link>
-  //       <Link to = "/category/celebs" className = "category-item"><li>CELEBRITIES</li></Link>
-  //       <Link to = "/category/household" className = "category-item"><li>HOUSEHOLD ITEMS</li></Link>
-  //       <Link to = "/category/debugging" className = "category-item"><li>DEBUGGING</li></Link>
-  //     </ul>
-  //   </section> 
+    </section> 
   );
 }
 
