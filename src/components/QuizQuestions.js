@@ -1,7 +1,7 @@
 import '../styles/quizQuestions.css';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../dataContext';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -10,14 +10,18 @@ function QuizQuestions() {
 	const { quizQuestions, setQuizQuestions, quizFormData } =
 		useContext(DataContext);
 
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 
+	//============================================================================
+	// ADDING INCORRECT ANSWERS
+	//============================================================================
 	const handleIncorrectAnswersAdd = (questionIndex) => {
 		// By default, there is an input field for just one incorrect answer.
 		// Allow the user to add an input field for another incorrect answer.
 		const updatedIncorrectAnswers = quizQuestions.map((question, index) => {
 			// The question to which the user is adding incorrect answers can be
 			// identified by its questionIndex.
+			// If the question type is True/False, prevent additional input fields.
 			if (index === questionIndex) {
 				// Add a new input field, value set to '', to the end of the question's
 				// incorrectAnswers array.
@@ -33,6 +37,9 @@ function QuizQuestions() {
 		setQuizQuestions(updatedIncorrectAnswers);
 	};
 
+	//============================================================================
+	// DELETING INCORRECT ANSWERS
+	//============================================================================
 	const handleIncorrectAnswersDelete = (questionIndex) => {
 		const updatedIncorrectAnswers = quizQuestions.map((question, index) => {
 			// The question from which the user is deleting incorrect answers can
@@ -47,6 +54,10 @@ function QuizQuestions() {
 		setQuizQuestions(updatedIncorrectAnswers);
 	};
 
+	//============================================================================
+	// SUBMITTING THE FORM
+	// Update state, send a POST request, and navigate to the finished quiz.
+	//============================================================================
 	const handleQuestionsSubmit = (e) => {
 		e.preventDefault();
 		const updatedQuestions = quizQuestions.map((question, questionIndex) => {
@@ -63,7 +74,6 @@ function QuizQuestions() {
 					].value;
 				}
 			);
-
 			return {
 				type: e.target[`type-${questionIndex}`].value,
 				question: e.target[`question-${questionIndex}`].value,
@@ -78,23 +88,26 @@ function QuizQuestions() {
 		const post = async () => {
 			try {
 				const res = await axios
-					.post('http://localhost:8000/api/quizzes', {
+					.post('http://badjjr.herokuapp.com/api/quizzes', {
 						...quizFormData,
 						questions: updatedQuestions,
 					})
 					.then((res) => {
 						console.log('Quiz successfully added!', res);
+						// Using the new quiz's generated id, navigate to a separate page
+						// that displays the new quiz.
+						navigate(`/quiz/${res.data[res.data.length - 1]._id}`);
 					});
 			} catch (error) {
 				console.log('Uh-oh! Something went wrong...', error);
 			}
 		};
 		post();
-
-		// Navigate to the page that displays the quiz in its entirety.
-		// navigate('/quiz/:id');
 	};
 
+	//============================================================================
+	// UI
+	//============================================================================
 	return (
 		<div>
 			{/* Render the form with Bootstrap styling. */}
@@ -102,6 +115,7 @@ function QuizQuestions() {
 				{quizQuestions.map((question, questionIndex) => (
 					<div key={questionIndex}>
 						<h2 className='question-title'>Question {questionIndex + 1}</h2>
+
 						<Form.Group>
 							<Form.Label>Question Type</Form.Label>
 							<Form.Select id={`type-${questionIndex}`}>
@@ -109,6 +123,7 @@ function QuizQuestions() {
 								<option value='boolean'>True / False</option>
 							</Form.Select>
 						</Form.Group>
+
 						<Form.Group>
 							<Form.Label htmlFor='question'>Question</Form.Label>
 							<Form.Control
@@ -118,6 +133,7 @@ function QuizQuestions() {
 								required
 							/>
 						</Form.Group>
+
 						<Form.Group>
 							<Form.Label htmlFor='correct-answer'>Correct Answer</Form.Label>
 							<Form.Control
@@ -161,10 +177,7 @@ function QuizQuestions() {
 						</div>
 					</div>
 				))}
-				<Button
-					variant='primary'
-					type='submit'
-					className='submit-questions-button'>
+				<Button variant='primary' type='submit' id='submit-questions-button'>
 					Submit
 				</Button>
 			</Form>
