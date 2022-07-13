@@ -10,6 +10,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     padding: 10px;
+    padding-bottom: 20px;
     margin: 10px;
     gap: 5px;
 }
