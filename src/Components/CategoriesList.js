@@ -39,8 +39,6 @@ function CategoriesList() {
           </Link>
         ))
       }
-
-
     </section> 
   );
 }
