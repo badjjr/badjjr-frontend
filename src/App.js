@@ -14,8 +14,6 @@ import QuizQuestions from './components/QuizQuestions';
 
 function App() {
 	const [quizAnswers, setQuizAnswers] = useState([]);
-  const [numOfQuestions, setNumOfQuestions] = useState('');
-	// Use Context to share the following states between components.
 	const [quizFormData, setQuizFormData] = useState({
 		title: '',
 		numberOfQuestions: 0,
