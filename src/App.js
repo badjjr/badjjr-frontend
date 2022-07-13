@@ -32,8 +32,6 @@ function App() {
 				setQuizFormData,
 				quizQuestions,
 				setQuizQuestions,
-        quizAnswers,
-        setQuizAnswers
 			}}>
 			<div className='App'>
 				<Header />
