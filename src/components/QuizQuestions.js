@@ -1,12 +1,14 @@
 import '../styles/quizQuestions.css';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { DataContext } from '../dataContext';
 // import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function QuizQuestions() {
-	const { quizQuestions, setQuizQuestions } = useContext(DataContext);
+	const { quizQuestions, setQuizQuestions, quizFormData } =
+		useContext(DataContext);
 
 	// const navigate = useNavigate();
 
@@ -66,7 +68,24 @@ function QuizQuestions() {
 			};
 		});
 		setQuizQuestions(updatedQuestions);
-		console.log(updatedQuestions);
+
+		// Send a POST request to add a new quiz to the API.
+		const post = async () => {
+			try {
+				const res = await axios
+					.post('http://localhost:8000/api/quizzes', {
+						...quizFormData,
+						questions: updatedQuestions,
+					})
+					.then((res) => {
+						console.log('Quiz successfully added!', res);
+					});
+			} catch (error) {
+				console.log('Uh-oh! Something went wrong...', error);
+			}
+		};
+		post();
+
 		// Navigate to the page that displays the quiz in its entirety.
 		// navigate('/quiz/:id');
 	};
@@ -104,7 +123,7 @@ function QuizQuestions() {
 							/>
 						</Form.Group>
 
-						{/* Recall that incorrectAnswers is an array. */}
+						{/* Note that incorrectAnswers is an array. */}
 						{question.incorrectAnswers
 							? question.incorrectAnswers.map((item, incorrectAnswerIndex) => {
 									return (
