@@ -11,8 +11,6 @@ function Score(props) {
     const [userCorrectAnswers, setUserCorrectAnswers] = useState()
     const [score, setScore] = useState()
 
-    // let uanswers = { 0: "JavaScript", 1: "Mocha", 2: "False", 3: "git checkout dev", 4: "True, True", 5: "Amazon", 6: "False", 7: "Props", 8: "Response Evaluation Process Line used in asynchronous error handling with the Try/Catch syntax", 9: "True"};
-
     let correctAnswersTemp = []
 
     async function getCorrectAnswers() {
