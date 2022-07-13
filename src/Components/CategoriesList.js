@@ -41,7 +41,7 @@ function CategoriesList() {
       }
 
 
-    </section> 
+    </section>
   );
 }
 
