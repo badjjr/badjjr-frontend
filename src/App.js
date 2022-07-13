@@ -3,6 +3,7 @@ import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
 import Home from './components/Home';
+import Categories from './Components/Categories';
 import CategoriesList from './components/CategoriesList';
 import { Routes, Route, Link } from 'react-router-dom';
 import DisplayQuiz from './components/DisplayQuiz';
