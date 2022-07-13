@@ -2,9 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
-import Home from './Components/Home';
-import CategoriesList from './Components/CategoriesList';
-import Categories from './Components/Categories';
+import Home from './components/Home';
+import CategoriesList from './components/CategoriesList';
+import Categories from './components/Categories';
 import { Routes, Route, Link } from 'react-router-dom';
 import DisplayQuiz from './components/DisplayQuiz';
 import Header from './components/Header';
@@ -41,6 +41,7 @@ function App() {
 			<div className='App'>
 				<Header />
 				<Routes>
+          <Route path='/home' element={<Home />} />
 					<Route path='/quiz/:id' element={<DisplayQuiz />} />
 					<Route path='/score' element={<Score />} />
           <Route path='/quiz-form' element={<QuizForm />} />
