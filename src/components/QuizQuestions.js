@@ -21,7 +21,12 @@ function QuizQuestions() {
 			if (index === questionIndex) {
 				// Add a new input field, value set to '', to the end of the question's
 				// incorrectAnswers array.
-				question.incorrectAnswers.push('');
+				const incorrectAnswers = [...question.incorrectAnswers, ''];
+				// Update the question's data.
+				return {
+					...question,
+					incorrectAnswers,
+				};
 			}
 			return question;
 		});
