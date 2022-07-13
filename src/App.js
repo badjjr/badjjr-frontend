@@ -42,19 +42,28 @@ function App() {
 				categories,
 				setCategories,
 			}}>
-			<div className='App'>
-				<Header />
-				<Routes>
-					<Route path='/' element={<Home />} />
-					<Route path='/quiz/:id' element={<DisplayQuiz />} />
+			<div>
+				<header>
+						<Header />
+				</header>
+				<main>
+					<Routes>
+            <Route path = '/' element = { <Home /> } />
+            <Route path = '/categories' element = { <CategoriesList /> } />
+						<Route path = '/categories/:category' element = { <Categories /> } />
+						<Route path = '/quiz-form-edit/:id' element = { <Quiz /> } />
+						<Route path='/quiz-form' element={<QuizForm />} />
+						<Route path='/quiz-questions' element={<QuizQuestions />} />
+            <Route path='/quiz/:id' element={<DisplayQuiz />} />
 					<Route path='/score' element={<Score />} />
 					<Route path='/quiz-form' element={<QuizForm />} />
 					<Route path='/quiz-questions' element={<QuizQuestions />} />
 					<Route path='/categories' element={<CategoriesList />} />
 				</Routes>
+      </main>
 			</div>
 		</DataContext.Provider>
-	);
+)
 }
 
 export default App;
