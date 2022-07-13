@@ -17,18 +17,18 @@
 	justify-content: space-evenly;
 }
 
-.add-answer-button,
-.delete-answer-button {
+#add-answer-button,
+#delete-answer-button {
 	width: 50%;
 	margin-top: 15px;
 }
 
-.delete-answer-button {
+#delete-answer-button {
 	background-color: maroon;
 	border-color: maroon;
 }
 
-.delete-answer-button:hover {
+#delete-answer-button:hover {
 	background-color: rgb(83, 0, 0);
 	border-color: rgb(83, 0, 0);
 }
