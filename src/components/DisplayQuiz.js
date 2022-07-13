@@ -1,18 +1,19 @@
 import React from 'react';
 import '/Users/jalynnjk/Desktop/sei/projects/unit-3/badjjr-frontend/src/styles/displayQuizStyle.css';
-import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { DataContext } from '../dataContext';
+import {Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function DisplayQuiz(props) {
 	const [quizData, setQuizData] = useState([]);
 	const [quizQuestions, setQuizQuestions] = useState([]);
-	const [quizAnswers, setQuizAnswers] = useState([])
+	const {quizAnswers, setQuizAnswers} = useContext(DataContext)
 	const { id } = useParams();
 
 	async function getQuizData() {
 		try {
-			const response = await axios.get('https://badjjr.herokuapp.com/api/quizzes/62cc994fc582b1dd9b70a621'
+			const response = await axios.get(`https://badjjr.herokuapp.com/api/quizzes/${id}`
 			);
 			setQuizData(response.data);
 			setQuizQuestions(response.data.questions);
@@ -37,21 +38,24 @@ function DisplayQuiz(props) {
 							<label className='quiz-question' htmlFor={`${index}`}>
 								{question.question}
 							</label>
-							{question.answerChoices.map((choice) => {
+							{question.answerChoices.map((choice, choiceIndex) => {
 								return (
-									<div className='quiz-answer-choice' key={choice._id}>
+									<div
+										className='quiz-answer-choice'
+										key={`${question._id}: ${choiceIndex}`}>
 										<input
 											className='input-button'
 											type='radio'
 											name={`${index}`}
 											value={choice}
-											onChange = {(event) => {
-												setQuizAnswers(
-													{ ...quizAnswers,
-													[event.target.name]: event.target.value})
+											onChange={(event) => {
+												setQuizAnswers({
+													...quizAnswers,
+													[event.target.name]: event.target.value,
+												});
 											}}
 										/>
-										<span className='input-text'>{choice}</span>
+										{choice}
 									</div>
 								);
 							})}
@@ -61,9 +65,12 @@ function DisplayQuiz(props) {
 			) : (
 				<div>'Loading quiz...'</div>
 			)}
-					<button className='quiz-submit-button'>
-						Submit
-					</button>
+						<Link to='/score'>
+							<button className='quiz-submit-button'>
+								Submit
+							</button>
+						</Link>
+
 		</form>
 	);
 }

@@ -1,14 +1,17 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { DataContext } from '../dataContext';
 import axios from 'axios';
 
 function Score(props) {
+    const {quizAnswers, setQuizAnswers} = useContext(DataContext);
+    console.log(quizAnswers)
     const [userAnswers, setUserAnswers] = useState()
     const [correctAnswers, setCorrectAnswers] = useState()
     const [userCorrectAnswers, setUserCorrectAnswers] = useState()
     const [score, setScore] = useState()
 
-    let uanswers = { 0: "JavaScript", 1: "Mocha", 2: "False", 3: "git checkout dev", 4: "True, True", 5: "Amazon", 6: "False", 7: "Props", 8: "Response Evaluation Process Line used in asynchronous error handling with the Try/Catch syntax", 9: "True"};
+    // let uanswers = { 0: "JavaScript", 1: "Mocha", 2: "False", 3: "git checkout dev", 4: "True, True", 5: "Amazon", 6: "False", 7: "Props", 8: "Response Evaluation Process Line used in asynchronous error handling with the Try/Catch syntax", 9: "True"};
 
     let correctAnswersTemp = []
 
@@ -37,7 +40,7 @@ function Score(props) {
         setScore(scoreTemp)
     }
     useEffect(() => {
-        setUserAnswers(Object.values(uanswers));
+        setUserAnswers(Object.values(quizAnswers));
         getCorrectAnswers()
     }, [])
 
@@ -54,7 +57,10 @@ function Score(props) {
     }, [userCorrectAnswers])
     return (
         <div>
-            Your result is: {score}%
+           {userCorrectAnswers ? (<div>
+               <h3>Your result is: {score}%</h3>
+                You answered {userCorrectAnswers.length} of {correctAnswers.length} questions correctly.
+           </div>) : (<h3>Score is being calculated...</h3>)}
         </div>
     );
 }

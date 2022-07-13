@@ -26,21 +26,17 @@ function App() {
 				setQuizFormData,
 				quizQuestions,
 				setQuizQuestions,
+        quizAnswers,
+        setQuizAnswers
 			}}>
 			<div>
-				<header>
-					<h1>
 					<Header />
-					</h1>
-				</header>
-				<main>
 					<Routes>
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
             <Route path='/quiz/' element={<DisplayQuiz />} />
             <Route path='/score' element={<Score />} />
 					</Routes>
-				</main>
 			</div>
 		</DataContext.Provider>
 	);
