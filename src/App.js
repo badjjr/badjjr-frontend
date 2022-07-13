@@ -16,8 +16,8 @@ function App() {
 		numberOfQuestions: 0,
 		category: '',
 	});
-
 	const [quizQuestions, setQuizQuestions] = useState([]);
+  const [quizAnswers, setQuizAnswers] = useState([])
 
 	return (
 		<DataContext.Provider
@@ -34,7 +34,7 @@ function App() {
 					<Routes>
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
-            <Route path='/quiz/' element={<DisplayQuiz />} />
+            <Route path='/quiz/:id' element={<DisplayQuiz />} />
             <Route path='/score' element={<Score />} />
 					</Routes>
 			</div>
