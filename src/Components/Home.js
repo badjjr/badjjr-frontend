@@ -10,7 +10,7 @@ function Home() {
         <Link to='/categories'style={{ textDecoration: 'none' }}>
           <li className = "list-item">Take a Quiz</li>
         </Link>
-        <Link to='/create'style={{ textDecoration: 'none' }}>
+        <Link to='/quiz-form'style={{ textDecoration: 'none' }}>
           <li className = "list-item">Make a Quiz</li>
         </Link>
         {/* <Link to='/myAccount'><li>Go to My Account</li></Link> */}
