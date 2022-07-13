@@ -1,25 +1,44 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { useState } from 'react';
+import { DataContext } from './dataContext';
+import { Routes, Route, Link } from 'react-router-dom';
+import QuizForm from './components/QuizForm';
+import QuizQuestions from './components/QuizQuestions';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	// Use Context to share the following states between components.
+	const [quizFormData, setQuizFormData] = useState({
+		title: '',
+		numberOfQuestions: 0,
+		category: '',
+	});
+
+	const [quizQuestions, setQuizQuestions] = useState([]);
+
+	return (
+		<DataContext.Provider
+			value={{
+				quizFormData,
+				setQuizFormData,
+				quizQuestions,
+				setQuizQuestions,
+			}}>
+			<div>
+				<header>
+					<h1>
+						<Link to='/'>🦡</Link>
+					</h1>
+				</header>
+				<main>
+					<Routes>
+						<Route path='/quiz-form' element={<QuizForm />} />
+						<Route path='/quiz-questions' element={<QuizQuestions />} />
+					</Routes>
+				</main>
+			</div>
+		</DataContext.Provider>
+	);
 }
 
 export default App;
