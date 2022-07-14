@@ -11,10 +11,6 @@ import CategoriesList from './components/CategoriesList';
 // import Categories from './components/Categories';
 import QuizFormEdit from './components/QuizFormEdit';
 import QuizQuestionsEdit from './components/QuizQuestionsEdit';
-<<<<<<< HEAD
-
-=======
->>>>>>> 31ca989 (Add changes to resolve conflicts)
 
 function App() {
 	// Use Context to share the following states between components.
@@ -26,10 +22,6 @@ function App() {
 
 	const [quizQuestions, setQuizQuestions] = useState([]);
 	const [categories, setCategories] = useState([]);
-
-	const [updatedQuizForm, setUpdatedQuizForm] = useState({});
-
-	const [updatedQuizQuestions, setUpdatedQuizQuestions] = useState([]);
 
 	return (
 		<DataContext.Provider
