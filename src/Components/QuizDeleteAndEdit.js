@@ -36,7 +36,7 @@ function QuizDeleteAndEdit({ id, title, category }) {
 
 	return (
 		<>
-			<Link to={`/quizzes/${id}`}>
+			<Link to={`/quiz/${id}`}>
 				<div>
 					<h3> Title: {title} </h3>
 					<h4> Category: {category} </h4>
