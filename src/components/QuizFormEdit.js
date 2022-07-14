@@ -39,6 +39,7 @@ function QuizFormEdit() {
 		__v: 0,
 	};
 
+<<<<<<< HEAD
 	const { setQuizFormData, setQuizQuestions } = useContext(DataContext);
 
 	const navigate = useNavigate();
@@ -51,6 +52,19 @@ function QuizFormEdit() {
 	const [showModal, setShowModal] = useState(false);
 	const handleCloseModal = () => setShowModal(false);
 	const handleShowModal = () => setShowModal(true);
+=======
+	const { updatedQuizForm, setUpdatedQuizForm } = useContext(DataContext);
+
+	const navigate = useNavigate();
+
+	// The following are used to populate the input fields with the current quiz
+	// data AND to keep track of any changes the user makes.
+	const [titleInput, setTitleInput] = useState(testDATA.title);
+	const [numberOfQuestionsInput, setNumberOfQuestionsInput] = useState(
+		testDATA.numberOfQuestions
+	);
+	const [categoryInput, setCategoryInput] = useState(testDATA.category);
+>>>>>>> 31ca989 (Add changes to resolve conflicts)
 
 	//============================================================================
 	// SUBMITTING THE FORM
@@ -58,6 +72,7 @@ function QuizFormEdit() {
 	//============================================================================
 	const handleUpdatedQuizSubmit = (e) => {
 		e.preventDefault();
+<<<<<<< HEAD
 		// Store user input for '# of Questions' in a variable for easy referral.
 		const numberOfQuestions = e.currentTarget['num-of-questions'].value;
 		setQuizFormData({
@@ -83,6 +98,35 @@ function QuizFormEdit() {
 		navigate('/quiz-questions-edit');
 	};
 
+=======
+		setUpdatedQuizForm({
+			title: e.currentTarget['title'].value,
+			numberOfQuestions: e.currentTarget['num-of-questions'].value,
+			category: e.currentTarget['category'].value,
+		});
+
+		// Send a PATCH request to update the current quiz in the API.
+		const patch = async () => {
+			try {
+				const res = await axios
+					.patch(
+						`http://badjjr.herokuapp.com/api/quizzes/${testDATA._id}`,
+						updatedQuizForm
+					)
+					.then((res) => {
+						console.log('Quiz successfully updated!', res);
+					});
+			} catch (error) {
+				console.log('Uh-oh! Something went wrong...', error);
+			}
+		};
+		patch();
+
+		// Navigate to the page holding the QuizQuestionsEdit component.
+		navigate('/quiz-questions-edit');
+	};
+
+>>>>>>> 31ca989 (Add changes to resolve conflicts)
 	//============================================================================
 	// UI
 	//============================================================================
@@ -96,6 +140,7 @@ function QuizFormEdit() {
 						type='text'
 						id='title'
 <<<<<<< HEAD
+<<<<<<< HEAD
 						defaultValue={testDATA.title}
 						required
 					/>
@@ -103,6 +148,10 @@ function QuizFormEdit() {
 
 =======
 						value={testDATA.title}
+=======
+						value={titleInput}
+						onChange={(e) => setTitleInput(e.target.value)}
+>>>>>>> 31ca989 (Add changes to resolve conflicts)
 						required
 					/>
 				</Form.Group>
@@ -112,6 +161,7 @@ function QuizFormEdit() {
 					<Form.Control
 						type='number'
 						id='num-of-questions'
+<<<<<<< HEAD
 <<<<<<< HEAD
 						defaultValue={testDATA.numberOfQuestions}
 						min='1'
@@ -142,6 +192,10 @@ function QuizFormEdit() {
 
 =======
 						value={testDATA.numberOfQuestions}
+=======
+						value={numberOfQuestionsInput}
+						onChange={(e) => setNumberOfQuestionsInput(e.target.value)}
+>>>>>>> 31ca989 (Add changes to resolve conflicts)
 						min='1'
 						max='20'
 						required
@@ -154,6 +208,7 @@ function QuizFormEdit() {
 						type='text'
 						id='category'
 <<<<<<< HEAD
+<<<<<<< HEAD
 						defaultValue={testDATA.category}
 						required
 					/>
@@ -161,6 +216,10 @@ function QuizFormEdit() {
 
 =======
 						value={testDATA.category}
+=======
+						value={categoryInput}
+						onChange={(e) => setCategoryInput(e.target.value)}
+>>>>>>> 31ca989 (Add changes to resolve conflicts)
 						required
 					/>
 				</Form.Group>
