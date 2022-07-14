@@ -3,7 +3,7 @@ import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
 import Home from './components/Home';
-import Categories from './Components/Categories';
+import Categories from './components/Categories';
 import CategoriesList from './components/CategoriesList';
 import { Routes, Route, Link } from 'react-router-dom';
 import DisplayQuiz from './components/DisplayQuiz';
@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Score from './components/Score';
 import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
+import Quiz from './components/Quiz.js'
 
 
 function App() {
