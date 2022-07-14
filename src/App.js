@@ -44,21 +44,15 @@ function App() {
 			}}>
 			<div>
 				<header>
-<<<<<<< HEAD
 					<h1>
 						<Link to='/'>
 							<img src='public/badger.png' alt='Badger Icon' />
 						</Link>
-=======
-					<h1 className='badger-img'>
-						<Link to='/'>🦡</Link>
->>>>>>> 20f1f54 (Add changes to resolve conflicts)
 					</h1>
 				</header>
 				<main>
 					<Routes>
 						<Route path='/' element={<Home />} />
-<<<<<<< HEAD
 						<Route path='/create' element={<Create />} />
 						<Route path='/categories' element={<CategoriesList />} />
 						{/* <Route path='/categories/:category' element={<Categories />} /> */}
@@ -69,14 +63,6 @@ function App() {
 							path='/quiz-questions-edit'
 							element={<QuizQuestionsEdit />}
 						/>
-=======
-						<Route path='/categories' element={<CategoriesList />} />
-						<Route path='/categories/:category' element={<Categories />} />
-						<Route path='/quiz-form-edit/:id' element={<Quiz />} />
-						<Route path='/quiz-form' element={<QuizForm />} />
-						<Route path='/quiz-questions' element={<QuizQuestions />} />
-						<Route path='/quiz-form-edit' element={<QuizFormEdit />} />
->>>>>>> 20f1f54 (Add changes to resolve conflicts)
 					</Routes>
 				</main>
 			</div>

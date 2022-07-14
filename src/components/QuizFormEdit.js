@@ -95,16 +95,24 @@ function QuizFormEdit() {
 					<Form.Control
 						type='text'
 						id='title'
+<<<<<<< HEAD
 						defaultValue={testDATA.title}
 						required
 					/>
 				</Form.Group>
 
+=======
+						value={testDATA.title}
+						required
+					/>
+				</Form.Group>
+>>>>>>> dc7db98 (Add changes to resolve conflicts)
 				<Form.Group>
 					<Form.Label htmlFor='num-of-questions'># of Questions</Form.Label>
 					<Form.Control
 						type='number'
 						id='num-of-questions'
+<<<<<<< HEAD
 						defaultValue={testDATA.numberOfQuestions}
 						min='1'
 						max='20'
@@ -132,16 +140,31 @@ function QuizFormEdit() {
 					</Modal.Footer>
 				</Modal>
 
+=======
+						value={testDATA.numberOfQuestions}
+						min='1'
+						max='20'
+						required
+					/>
+				</Form.Group>
+>>>>>>> dc7db98 (Add changes to resolve conflicts)
 				<Form.Group>
 					<Form.Label htmlFor='category'>Category</Form.Label>
 					<Form.Control
 						type='text'
 						id='category'
+<<<<<<< HEAD
 						defaultValue={testDATA.category}
 						required
 					/>
 				</Form.Group>
 
+=======
+						value={testDATA.category}
+						required
+					/>
+				</Form.Group>
+>>>>>>> dc7db98 (Add changes to resolve conflicts)
 				<Button variant='primary' type='submit' className='form-button'>
 					Next
 				</Button>
