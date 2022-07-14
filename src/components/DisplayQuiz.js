@@ -1,5 +1,5 @@
 import React from 'react';
-import '/Users/jalynnjk/Desktop/sei/projects/unit-3/badjjr-frontend/src/styles/displayQuizStyle.css';
+import '../styles/displayQuizStyle.css';
 import { useState, useEffect, useContext } from 'react';
 import { DataContext } from '../dataContext';
 import { Link, useParams } from 'react-router-dom';

@@ -2,16 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import '../styles/categories.css';
-import QuizzesByCategory from './QuizzesByCategory';
 
 function Categories() {
 	const [categories, setCategories] = useState([]);
 
 	const myArr = categories.map((a) => a.category);
-	// console.log("myArr =====>",myArr)
 
 	const newArr = [...new Set(myArr)].map((b) => b);
-	// console.log("newArr Console ==>", newArr)
 
 	useEffect(() => {
 		fetch('https://badjjr.herokuapp.com/api/quizzes')
@@ -34,9 +31,6 @@ function Categories() {
 					</ul>
 				</Link>
 			))}
-			{categories.map((cat) => {
-				return <QuizzesByCategory category={cat.category} />;
-			})}
 		</section>
 	);
 }
