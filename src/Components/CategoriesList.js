@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import '../styles/CategoriesList.css';
+import '../styles/categoriesList.css';
 import Categories from './Categories';
 
 function CategoriesList() {
