@@ -12,7 +12,8 @@ function QuizForm() {
 
 	const handleQuizFormSubmit = (e) => {
 		e.preventDefault();
-		// Store user input for '# of Questions' in a variable for easy referral.
+				// Store user input for the number of questions in a variable for easy
+		// referral.
 		const numberOfQuestions = e.currentTarget['num-of-questions'].value;
 		setQuizFormData({
 			title: e.currentTarget['title'].value,

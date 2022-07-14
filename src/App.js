@@ -3,19 +3,16 @@ import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
 import { Routes, Route, Link } from 'react-router-dom';
+import Home from './components/Home';
 import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
 import Create from './components/Create';
 import CategoriesList from './components/CategoriesList';
-// import Categories from './components/Categories';
+import Categories from './components/Categories';
 import QuizFormEdit from './components/QuizFormEdit';
 import QuizQuestionsEdit from './components/QuizQuestionsEdit';
 
 function App() {
-	// title: '',
-	// numberOfQuestions: '',
-	// category: '',
-
 	// Use Context to share the following states between components.
 	const [quizFormData, setQuizFormData] = useState({});
 	const [quizQuestions, setQuizQuestions] = useState([]);
@@ -47,7 +44,7 @@ function App() {
 						<Route path='/' element={<Home />} />
 						<Route path='/create' element={<Create />} />
 						<Route path='/categories' element={<CategoriesList />} />
-						{/* <Route path='/categories/:category' element={<Categories />} /> */}
+						<Route path='/categories/:category' element={<Categories />} />
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
 						<Route path='/quiz-form-edit/:id' element={<QuizFormEdit />} />

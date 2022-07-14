@@ -14,6 +14,7 @@ function QuizFormEdit() {
 
 	const { id } = useParams();
 
+	// On page load, grab the data of the quiz that is to be edited.
 	useEffect(() => {
 		const getQuizById = async () => {
 			try {
@@ -25,7 +26,7 @@ function QuizFormEdit() {
 					setUpdatedQuizId(res.data._id);
 				});
 			} catch (err) {
-				console.log('Uh-oh! Something went wrong...', err);
+				console.log("Uh-oh! We didn't get the quiz...", err);
 			}
 		};
 		getQuizById();
@@ -44,19 +45,20 @@ function QuizFormEdit() {
 	// SUBMITTING THE FORM
 	// Update state, send a PATCH request, and navigate to the QuizQuestionsEdit component.
 	//============================================================================
-	const handleUpdatedQuizSubmit = (e) => {
+	const handleQuizFormSubmit = (e) => {
 		e.preventDefault();
 		// Store user input for '# of Questions' in a variable for easy referral.
 		const numberOfQuestions = e.currentTarget['num-of-questions'].value;
+
 		setQuizFormData({
 			title: e.currentTarget['title'].value,
 			numberOfQuestions: numberOfQuestions,
 			category: e.currentTarget['category'].value,
 		});
 
-		// Initialize a list of quiz questions, the length of which is based on the
-		// numberOfQuestions value.
-		if (numberOfQuestions !== quizFormData.numberOfQuestions)
+		// If the quiz's original number of questions is modified
+		if (parseInt(numberOfQuestions) !== quizFormData.numberOfQuestions) {
+			// send a blank form,
 			setQuizQuestions(
 				new Array(parseInt(numberOfQuestions)).fill({
 					type: '',
@@ -66,6 +68,10 @@ function QuizFormEdit() {
 					incorrectAnswers: [''],
 				})
 			);
+			// otherwise, send a form populated with the quiz's current data.
+		} else {
+			setQuizQuestions(quizFormData.questions);
+		}
 
 		// Navigate to the page holding the QuizQuestionsEdit component.
 		navigate('/quiz-questions-edit');
@@ -77,7 +83,7 @@ function QuizFormEdit() {
 	return (
 		<div>
 			{/* Render the form with Bootstrap styling. */}
-			<Form className='quiz-form' onSubmit={handleUpdatedQuizSubmit}>
+			<Form className='quiz-form' onSubmit={handleQuizFormSubmit}>
 				<Form.Group>
 					<Form.Label htmlFor='title'>Title</Form.Label>
 					<Form.Control
