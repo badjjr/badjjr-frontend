@@ -1,23 +1,12 @@
 import { useContext, useState } from 'react';
-// import { DataContext } from '../dataContext';
-// import { useNavigate } from 'react-router-dom';
+import { DataContext } from '../dataContext';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function QuizFormEdit() {
-	{
-		/* Grab the selected quiz's data from Context */
-	}
-	{
-		/* Populate the form field with the selected quiz's QUIZ data */
-	}
-	{
-		/* If the user changes the number of questions, add another question to the questions array. */
-	}
-	{
-		/* Create a button to go to the QuizQuestionToUpdate */
-	}
-
+	// Hard-coded data
 	const testDATA = {
 		_id: '62cf5e01c08e0c47c85182b0',
 		title: 'test',
@@ -40,8 +29,54 @@ function QuizFormEdit() {
 		__v: 0,
 	};
 
-	const handleUpdatedQuizSubmit = () => {};
+	const { updatedQuizForm, setUpdatedQuizForm } = useContext(DataContext);
 
+	const navigate = useNavigate();
+
+	// The following are used to populate the input fields with the current quiz
+	// data AND to keep track of any changes the user makes.
+	const [titleInput, setTitleInput] = useState(testDATA.title);
+	const [numberOfQuestionsInput, setNumberOfQuestionsInput] = useState(
+		testDATA.numberOfQuestions
+	);
+	const [categoryInput, setCategoryInput] = useState(testDATA.category);
+
+	//============================================================================
+	// SUBMITTING THE FORM
+	// Update state, send a PATCH request, and navigate to the QuizQuestionsEdit component.
+	//============================================================================
+	const handleUpdatedQuizSubmit = (e) => {
+		e.preventDefault();
+		setUpdatedQuizForm({
+			title: e.currentTarget['title'].value,
+			numberOfQuestions: e.currentTarget['num-of-questions'].value,
+			category: e.currentTarget['category'].value,
+		});
+
+		// Send a PATCH request to update the current quiz in the API.
+		const patch = async () => {
+			try {
+				const res = await axios
+					.patch(
+						`http://badjjr.herokuapp.com/api/quizzes/${testDATA._id}`,
+						updatedQuizForm
+					)
+					.then((res) => {
+						console.log('Quiz successfully updated!', res);
+					});
+			} catch (error) {
+				console.log('Uh-oh! Something went wrong...', error);
+			}
+		};
+		patch();
+
+		// Navigate to the page holding the QuizQuestionsEdit component.
+		navigate('/quiz-questions-edit');
+	};
+
+	//============================================================================
+	// UI
+	//============================================================================
 	return (
 		<div>
 			{/* Render the form with Bootstrap styling. */}
@@ -51,7 +86,8 @@ function QuizFormEdit() {
 					<Form.Control
 						type='text'
 						id='title'
-						value={testDATA.title}
+						value={titleInput}
+						onChange={(e) => setTitleInput(e.target.value)}
 						required
 					/>
 				</Form.Group>
@@ -60,7 +96,8 @@ function QuizFormEdit() {
 					<Form.Control
 						type='number'
 						id='num-of-questions'
-						value={testDATA.numberOfQuestions}
+						value={numberOfQuestionsInput}
+						onChange={(e) => setNumberOfQuestionsInput(e.target.value)}
 						min='1'
 						max='20'
 						required
@@ -71,7 +108,8 @@ function QuizFormEdit() {
 					<Form.Control
 						type='text'
 						id='category'
-						value={testDATA.category}
+						value={categoryInput}
+						onChange={(e) => setCategoryInput(e.target.value)}
 						required
 					/>
 				</Form.Group>

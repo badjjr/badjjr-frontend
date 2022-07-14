@@ -10,6 +10,7 @@ import Create from './Components/Create';
 import CategoriesList from './Components/CategoriesList';
 import Categories from './Components/Categories';
 import QuizFormEdit from './components/QuizFormEdit';
+import QuizQuestionsEdit from './components/QuizQuestionsEdit';
 
 function App() {
 	// Use Context to share the following states between components.
@@ -21,11 +22,7 @@ function App() {
 
 	const [quizQuestions, setQuizQuestions] = useState([]);
 
-	const [updatedQuizFormData, setUpdatedQuizFormData] = useState({
-		title: '',
-		numberOfQuestions: 0,
-		category: '',
-	});
+	const [updatedQuizForm, setUpdatedQuizForm] = useState({});
 
 	const [updatedQuizQuestions, setUpdatedQuizQuestions] = useState([]);
 
@@ -36,6 +33,10 @@ function App() {
 				setQuizFormData,
 				quizQuestions,
 				setQuizQuestions,
+				updatedQuizForm,
+				setUpdatedQuizForm,
+				updatedQuizQuestions,
+				setUpdatedQuizQuestions,
 			}}>
 			<div>
 				<header>
@@ -52,6 +53,10 @@ function App() {
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
 						<Route path='/quiz-form-edit' element={<QuizFormEdit />} />
+						<Route
+							path='/quiz-questions-edit'
+							element={<QuizQuestionsEdit />}
+						/>
 					</Routes>
 				</main>
 			</div>
