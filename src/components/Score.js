@@ -1,7 +1,10 @@
 import React from 'react';
+import '/Users/jalynnjk/Desktop/sei/projects/unit-3/badjjr-frontend/src/styles/score.css';
 import { useState, useEffect, useContext } from 'react';
 import { DataContext } from '../dataContext';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 function Score(props) {
     const {quizAnswers, setQuizAnswers, quizId} = useContext(DataContext);
@@ -11,7 +14,6 @@ function Score(props) {
     const [score, setScore] = useState()
 
     let correctAnswersTemp = []
-
     async function getCorrectAnswers() {
         const response = await axios.get(
 					`https://badjjr.herokuapp.com/api/quizzes/${quizId}`
@@ -54,10 +56,14 @@ function Score(props) {
     }, [userCorrectAnswers])
     return (
         <div>
-           {userCorrectAnswers ? (<div>
-               <h3>Your result is: {score}%</h3>
-                You answered {userCorrectAnswers.length} of {correctAnswers.length} questions correctly.
-           </div>) : (<h3>Score is being calculated...</h3>)}
+           {userCorrectAnswers ? 
+           (<div>
+               <h3 className='result'>Your result is: {score}%</h3>
+                <p className='number-correct'>You answered {userCorrectAnswers.length} of {correctAnswers.length} questions correctly.</p>
+                <Link to='/'><button className='return-home-btn'>Return Home</button></Link>
+           </div>
+           ) : (<h3 className='error-message'>Oh no! There was an error loading your score.</h3>)
+           }
         </div>
     );
 }
