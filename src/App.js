@@ -5,10 +5,10 @@ import { DataContext } from './dataContext';
 import { Routes, Route, Link } from 'react-router-dom';
 import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
-import Home from './Components/Home';
-import Create from './Components/Create';
-import CategoriesList from './Components/CategoriesList';
-import Categories from './Components/Categories';
+import Home from './components/Home';
+import Create from './components/Create';
+import CategoriesList from './components/CategoriesList';
+// import Categories from './components/Categories';
 import QuizFormEdit from './components/QuizFormEdit';
 import QuizQuestionsEdit from './components/QuizQuestionsEdit';
 
@@ -22,10 +22,6 @@ function App() {
 
 	const [quizQuestions, setQuizQuestions] = useState([]);
 
-	const [updatedQuizForm, setUpdatedQuizForm] = useState({});
-
-	const [updatedQuizQuestions, setUpdatedQuizQuestions] = useState([]);
-
 	return (
 		<DataContext.Provider
 			value={{
@@ -33,23 +29,21 @@ function App() {
 				setQuizFormData,
 				quizQuestions,
 				setQuizQuestions,
-				updatedQuizForm,
-				setUpdatedQuizForm,
-				updatedQuizQuestions,
-				setUpdatedQuizQuestions,
 			}}>
 			<div>
 				<header>
 					<h1>
-						<Link to='/'><img src="public/badger.png" alt="Badger Icon" /></Link>
+						<Link to='/'>
+							<img src='public/badger.png' alt='Badger Icon' />
+						</Link>
 					</h1>
 				</header>
 				<main>
 					<Routes>
-						    <Route path = '/' element = { <Home /> } />
-						<Route path = '/create' element = { <Create /> } /> 
-						<Route path = '/categories' element = { <CategoriesList /> } />
-						<Route path = '/categories/:category' element = { <Categories/> } />
+						<Route path='/' element={<Home />} />
+						<Route path='/create' element={<Create />} />
+						<Route path='/categories' element={<CategoriesList />} />
+						{/* <Route path='/categories/:category' element={<Categories />} /> */}
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
 						<Route path='/quiz-form-edit' element={<QuizFormEdit />} />

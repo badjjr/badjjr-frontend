@@ -1,35 +1,34 @@
 import { useContext, useState } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function QuizFormEdit() {
 	// Hard-coded data
 	const testDATA = {
-		_id: '62cf5e01c08e0c47c85182b0',
-		title: 'test',
-		numberOfQuestions: 1,
-		category: 'testing',
+		_id: '62cdb2952cd815e1b5509110',
+		title: 'Covalent Bonds',
+		numberOfQuestions: 10,
+		category: 'Chemistry',
 		questions: [
 			{
-				type: 'multiple choice',
-				question: 'question',
-				answerChoices: ['correct', 'wrong'],
-				correctAnswer: 'correct',
-				incorrectAnswers: ['wrong'],
-				_id: '62cf5e01c08e0c47c85182b1',
-				createdAt: '2022-07-14T00:06:25.595Z',
-				updatedAt: '2022-07-14T00:06:25.595Z',
+				type: 'Multiple Choice',
+				question: "What's the capital of Canada?",
+				answerChoices: ['Montreal', 'Toronto', 'Ottawa', 'Calgary'],
+				correctAnswer: 'Ottawa',
+				incorrectAnswers: ['Montreal', 'Toronto', 'Calgary'],
+				_id: '62cdb4dde962d123b684333e',
+				createdAt: '2022-07-12T17:52:29.833Z',
+				updatedAt: '2022-07-12T17:52:29.833Z',
 			},
 		],
-		createdAt: '2022-07-14T00:06:25.595Z',
-		updatedAt: '2022-07-14T00:06:25.595Z',
-		__v: 0,
+		createdAt: '2022-07-12T17:42:45.473Z',
+		updatedAt: '2022-07-12T17:52:29.833Z',
+		__v: 1,
 	};
 
-	const { updatedQuizForm, setUpdatedQuizForm } = useContext(DataContext);
+	const { setQuizFormData } = useContext(DataContext);
 
 	const navigate = useNavigate();
 
@@ -47,28 +46,11 @@ function QuizFormEdit() {
 	//============================================================================
 	const handleUpdatedQuizSubmit = (e) => {
 		e.preventDefault();
-		setUpdatedQuizForm({
+		setQuizFormData({
 			title: e.currentTarget['title'].value,
 			numberOfQuestions: e.currentTarget['num-of-questions'].value,
 			category: e.currentTarget['category'].value,
 		});
-
-		// Send a PATCH request to update the current quiz in the API.
-		const patch = async () => {
-			try {
-				const res = await axios
-					.patch(
-						`http://badjjr.herokuapp.com/api/quizzes/${testDATA._id}`,
-						updatedQuizForm
-					)
-					.then((res) => {
-						console.log('Quiz successfully updated!', res);
-					});
-			} catch (error) {
-				console.log('Uh-oh! Something went wrong...', error);
-			}
-		};
-		patch();
 
 		// Navigate to the page holding the QuizQuestionsEdit component.
 		navigate('/quiz-questions-edit');
