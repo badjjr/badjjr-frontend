@@ -6,13 +6,14 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function QuizForm() {
-	const { quizFormData, setQuizFormData, setQuizQuestions } =
+	const { setQuizFormData, setQuizQuestions } =
 		useContext(DataContext);
 	const navigate = useNavigate();
 
 	const handleQuizFormSubmit = (e) => {
 		e.preventDefault();
-		// Store user input for '# of Questions' in a variable for easy referral.
+				// Store user input for the number of questions in a variable for easy
+		// referral.
 		const numberOfQuestions = e.currentTarget['num-of-questions'].value;
 		setQuizFormData({
 			title: e.currentTarget['title'].value,
@@ -42,6 +43,7 @@ function QuizForm() {
 					<Form.Label htmlFor='title'>Title</Form.Label>
 					<Form.Control type='text' id='title' placeholder='French' required />
 				</Form.Group>
+
 				<Form.Group>
 					<Form.Label htmlFor='num-of-questions'># of Questions</Form.Label>
 					<Form.Control
@@ -53,6 +55,7 @@ function QuizForm() {
 						required
 					/>
 				</Form.Group>
+
 				<Form.Group>
 					<Form.Label htmlFor='category'>Category</Form.Label>
 					<Form.Control

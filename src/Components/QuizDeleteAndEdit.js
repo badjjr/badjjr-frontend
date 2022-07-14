@@ -27,7 +27,7 @@ function QuizDeleteAndEdit({ id, title, category }) {
 			);
 			console.log(response);
 			if (response.status === 200) {
-				navigate('/quiz-form-edit/:id');
+				navigate(`/quiz-form-edit/${response.data._id}`);
 			}
 		} catch (error) {
 			console.log(error);

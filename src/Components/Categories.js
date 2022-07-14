@@ -1,40 +1,44 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-// import { useContext } from "react";
-// import { DataContext } from "../dataContext";
-import QuizDeleteAndEdit from "./QuizDeleteAndEdit"
-import { useParams } from "react-router-dom";
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import '../styles/categories.css';
+import QuizzesByCategory from './QuizzesByCategory';
 
 function Categories() {
-  // const { categories, setCategories } = useContext(DataContext);
-  const [categories, setCategories] = useState([])
-  const {category} = useParams()
+	const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    fetch(`https://badjjr.herokuapp.com/api/quizzes/categories/${category}`)
-      .then((res) => res.json())
-      .then((json) => {
-        setCategories(json)
-      })
-      .catch(console.error);
-  }, []);
+	const myArr = categories.map((a) => a.category);
+	// console.log("myArr =====>",myArr)
 
-  return (
-    <section>
-      {
-        categories.map((cats) => {
-          return (
-            <QuizDeleteAndEdit 
-            id={cats._id}
-            title={cats.title}
-            category={cats.category} />
-          )
-        })
-      }
-    </section>
-  )
+	const newArr = [...new Set(myArr)].map((b) => b);
+	// console.log("newArr Console ==>", newArr)
+
+	useEffect(() => {
+		fetch('https://badjjr.herokuapp.com/api/quizzes')
+			.then((res) => res.json())
+			.then((json) => {
+				setCategories(json);
+			})
+			.catch(console.error);
+	}, []);
+
+	return (
+		<section className='category-container'>
+			{newArr.map((category) => (
+				<Link
+					to={`/categories/${category}`}
+					key={category}
+					className='category-list'>
+					<ul>
+						<li className='category-item'>{category.toUpperCase()}</li>
+					</ul>
+				</Link>
+			))}
+			{categories.map((cat) => {
+				return <QuizzesByCategory category={cat.category} />;
+			})}
+		</section>
+	);
 }
 
 export default Categories;

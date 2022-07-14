@@ -1,4 +1,3 @@
-import '../styles/quizQuestions.css';
 import { useContext } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
@@ -6,8 +5,8 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function QuizQuestions() {
-	const { quizQuestions, setQuizQuestions, quizFormData } =
+function QuizQuestionsEdit() {
+	const { quizFormData, quizQuestions, setQuizQuestions, updatedQuizId } =
 		useContext(DataContext);
 
 	const navigate = useNavigate();
@@ -16,6 +15,7 @@ function QuizQuestions() {
 	// ADDING INCORRECT ANSWERS
 	//============================================================================
 	const handleIncorrectAnswersAdd = (questionIndex) => {
+		console.log(questionIndex);
 		// By default, there is an input field for just one incorrect answer.
 		// Allow the user to add an input field for another incorrect answer.
 		const updatedIncorrectAnswers = quizQuestions.map((question, index) => {
@@ -53,10 +53,6 @@ function QuizQuestions() {
 		setQuizQuestions(updatedIncorrectAnswers);
 	};
 
-	//============================================================================
-	// SUBMITTING THE FORM
-	// Update state, send a POST request, and navigate to the finished quiz.
-	//============================================================================
 	const handleQuestionsSubmit = (e) => {
 		e.preventDefault();
 		const updatedQuestions = quizQuestions.map((question, questionIndex) => {
@@ -83,25 +79,23 @@ function QuizQuestions() {
 		});
 		setQuizQuestions(updatedQuestions);
 
-		// Send a POST request to add a new quiz to the API.
-		const post = async () => {
+		// Send a PATCH request to update the questions in the quiz.
+		const patch = async () => {
 			try {
 				const res = await axios
-					.post('http://badjjr.herokuapp.com/api/quizzes', {
+					.patch(`http://badjjr.herokuapp.com/api/quizzes/${updatedQuizId}`, {
 						...quizFormData,
 						questions: updatedQuestions,
 					})
 					.then((res) => {
 						console.log('Quiz successfully added!', res);
-						// Using the new quiz's generated id, navigate to a separate page
-						// that displays the new quiz.
-						navigate(`/quiz/${res.data[res.data.length - 1]._id}`);
+						navigate(`/quiz/${updatedQuizId}`);
 					});
 			} catch (error) {
 				console.log('Uh-oh! Something went wrong...', error);
 			}
 		};
-		post();
+		patch();
 	};
 
 	//============================================================================
@@ -117,26 +111,30 @@ function QuizQuestions() {
 
 						<Form.Group>
 							<Form.Label>Question Type</Form.Label>
-							<Form.Select id={`type-${questionIndex}`}>
+							<Form.Select
+								id={`type-${questionIndex}`}
+								defaultValue={question.type}>
 								<option value='multiple choice'>Multiple Choice</option>
 								<option value='boolean'>True / False</option>
 							</Form.Select>
 						</Form.Group>
+
 						<Form.Group>
 							<Form.Label htmlFor='question'>Question</Form.Label>
 							<Form.Control
 								type='text'
 								id={`question-${questionIndex}`}
-								placeholder='Enter a question or statement'
+								defaultValue={question.question}
 								required
 							/>
 						</Form.Group>
+
 						<Form.Group>
 							<Form.Label htmlFor='correct-answer'>Correct Answer</Form.Label>
 							<Form.Control
 								type='text'
 								id={`correct-answer-${questionIndex}`}
-								placeholder='Enter the correct answer'
+								defaultValue={question.correctAnswer}
 								required
 							/>
 						</Form.Group>
@@ -150,7 +148,7 @@ function QuizQuestions() {
 											<Form.Control
 												type='text'
 												id={`incorrect-answer-${questionIndex}-${incorrectAnswerIndex}`}
-												placeholder='Enter an incorrect answer'
+												defaultValue={item}
 												required
 											/>
 										</Form.Group>
@@ -182,4 +180,4 @@ function QuizQuestions() {
 	);
 }
 
-export default QuizQuestions;
+export default QuizQuestionsEdit;
