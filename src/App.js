@@ -10,28 +10,35 @@ import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
 import QuizFormEdit from './components/QuizFormEdit';
 import QuizQuestionsEdit from './components/QuizQuestionsEdit';
+import DisplayQuiz from './components/DisplayQuiz';
+import Header from './components/Header';
+import Score from './components/Score';
 
 function App() {
 	// Use Context to share the following states between components.
 	const [quizFormData, setQuizFormData] = useState({});
 	const [quizQuestions, setQuizQuestions] = useState([]);
+  const [quizId, setQuizId] = useState()
 	const [updatedQuizId, setUpdatedQuizId] = useState('');
+  const [quizAnswers, setQuizAnswers] = useState([]);
 
 	return (
 		<DataContext.Provider
 			value={{
+				quizAnswers,
+				setQuizAnswers,
 				quizFormData,
 				setQuizFormData,
 				quizQuestions,
 				setQuizQuestions,
 				updatedQuizId,
 				setUpdatedQuizId,
+				quizId,
+				setQuizId,
 			}}>
 			<div>
 				<header>
-					<h1>
-						<Link to='/'>🦡</Link>
-					</h1>
+						<Header />
 				</header>
 				<main>
 					<Routes>
@@ -48,11 +55,13 @@ function App() {
 							path='/quiz-questions-edit'
 							element={<QuizQuestionsEdit />}
 						/>
+            <Route path='/quiz/:id' element={<DisplayQuiz />} />
+					  <Route path='/score' element={<Score />} />
 					</Routes>
 				</main>
 			</div>
 		</DataContext.Provider>
-	);
+)
 }
 
 export default App;

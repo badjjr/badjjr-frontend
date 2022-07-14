@@ -122,7 +122,6 @@ function QuizQuestions() {
 								<option value='boolean'>True / False</option>
 							</Form.Select>
 						</Form.Group>
-
 						<Form.Group>
 							<Form.Label htmlFor='question'>Question</Form.Label>
 							<Form.Control
@@ -132,7 +131,6 @@ function QuizQuestions() {
 								required
 							/>
 						</Form.Group>
-
 						<Form.Group>
 							<Form.Label htmlFor='correct-answer'>Correct Answer</Form.Label>
 							<Form.Control

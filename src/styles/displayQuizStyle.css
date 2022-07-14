@@ -1,0 +1,36 @@
+/* .take-quiz-form {
+
+}
+.quiz-title {
+
+} */
+.quiz-question-container {
+    border-bottom: 1px solid black;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 10px;
+    padding-bottom: 20px;
+    margin: 10px;
+    gap: 8px;
+}
+.quiz-question-number {
+    color: gray;
+    margin: 0px;
+}
+.question-number {
+    color: rgb(61, 58, 58);
+}
+.quiz-question {
+    text-align: left;
+}
+.quiz-answer-choice {
+    text-align: left;
+    align-self: left;
+}
+.quiz-submit-button {
+    background-color: green;
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+}
