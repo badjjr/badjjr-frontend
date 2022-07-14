@@ -8,7 +8,7 @@ import axios from 'axios';
 function DisplayQuiz(props) {
 	const [quizData, setQuizData] = useState([]);
 	const [quizQuestions, setQuizQuestions] = useState([]);
-	const {quizAnswers, setQuizAnswers} = useContext(DataContext)
+	const {quizAnswers, setQuizAnswers, quizId, setQuizId} = useContext(DataContext)
 	const { id } = useParams();
 
 	async function getQuizData() {
@@ -22,6 +22,7 @@ function DisplayQuiz(props) {
 	
 	useEffect(() => {
 		getQuizData()
+		setQuizId(id)
 	}, []);
 
 	return (

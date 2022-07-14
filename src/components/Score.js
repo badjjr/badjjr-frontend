@@ -4,8 +4,7 @@ import { DataContext } from '../dataContext';
 import axios from 'axios';
 
 function Score(props) {
-    const {quizAnswers, setQuizAnswers} = useContext(DataContext);
-    console.log(quizAnswers)
+    const {quizAnswers, setQuizAnswers, quizId} = useContext(DataContext);
     const [userAnswers, setUserAnswers] = useState()
     const [correctAnswers, setCorrectAnswers] = useState()
     const [userCorrectAnswers, setUserCorrectAnswers] = useState()
@@ -15,7 +14,7 @@ function Score(props) {
 
     async function getCorrectAnswers() {
         const response = await axios.get(
-					`https://badjjr.herokuapp.com/api/quizzes/62cc994fc582b1dd9b70a621`
+					`https://badjjr.herokuapp.com/api/quizzes/${quizId}`
 				)
         response.data.questions.forEach((question) => {
             correctAnswersTemp.push(question.correctAnswer)

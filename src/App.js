@@ -6,8 +6,8 @@ import { Routes, Route, Link } from 'react-router-dom';
 import DisplayQuiz from './components/DisplayQuiz';
 import Header from './components/Header';
 import Score from './components/Score';
-import QuizForm from './components/QuizForm/QuizForm';
-import QuizQuestions from './components/QuizQuestions/QuizQuestions';
+import QuizForm from './components/QuizForm';
+import QuizQuestions from './components/QuizQuestions';
 
 function App() {
 	const [quizAnswers, setQuizAnswers] = useState([]);
@@ -18,7 +18,7 @@ function App() {
 		numberOfQuestions: 0,
 		category: '',
 	});
-
+  const [quizId, setQuizId] = useState()
 	const [quizQuestions, setQuizQuestions] = useState([]);
 
 	return (
@@ -32,6 +32,8 @@ function App() {
 				setQuizFormData,
 				quizQuestions,
 				setQuizQuestions,
+        quizId,
+        setQuizId
 			}}>
 			<div className='App'>
 				<Header />
@@ -40,7 +42,6 @@ function App() {
 					<Route path='/score' element={<Score />} />
           <Route path='/quiz-form' element={<QuizForm />} />
 					<Route path='/quiz-questions' element={<QuizQuestions />} />
-          <Route path='/new-quiz' element={<NewQuiz />} />
 				</Routes>
         </div>
         </ DataContext.Provider>
