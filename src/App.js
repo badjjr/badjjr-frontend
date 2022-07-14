@@ -38,7 +38,7 @@ function App() {
 			<div className='App'>
 				<Header />
 				<Routes>
-          <Route path='/home' element={<Home />} />
+          <Route path='/' element={<Home />} />
 					<Route path='/quiz/:id' element={<DisplayQuiz />} />
 					<Route path='/score' element={<Score />} />
           <Route path='/quiz-form' element={<QuizForm />} />

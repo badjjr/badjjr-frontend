@@ -30,6 +30,11 @@ function DisplayQuiz(props) {
 			<h2 className='quiz-title' >{quizData.title}</h2>
 			{quizQuestions ? (
 				quizQuestions.map((question, index) => {
+					let unshuffledQuestions = question.answerChoices;
+					let shuffledQuestions = unshuffledQuestions
+						.map((value) => ({ value, sort: Math.random() }))
+						.sort((a, b) => a.sort - b.sort)
+						.map(({ value }) => value);
 					return (
 						<div className='quiz-question-container' key={question._id}>
 							<h4 className='quiz-question-number'>
@@ -39,7 +44,7 @@ function DisplayQuiz(props) {
 							<label className='quiz-question' htmlFor={`${index}`}>
 								{question.question}
 							</label>
-							{question.answerChoices.map((choice, choiceIndex) => {
+							{shuffledQuestions.map((choice, choiceIndex) => {
 								return (
 									<div
 										className='quiz-answer-choice'
