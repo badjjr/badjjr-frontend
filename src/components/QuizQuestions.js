@@ -87,7 +87,7 @@ function QuizQuestions() {
 		const post = async () => {
 			try {
 				const res = await axios
-					.post('http://badjjr.herokuapp.com/api/quizzes', {
+					.post('https://badjjr.herokuapp.com/api/quizzes', {
 						...quizFormData,
 						questions: updatedQuestions,
 					})

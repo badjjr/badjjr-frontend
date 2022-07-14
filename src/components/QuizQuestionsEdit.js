@@ -83,7 +83,7 @@ function QuizQuestionsEdit() {
 		const patch = async () => {
 			try {
 				const res = await axios
-					.patch(`http://badjjr.herokuapp.com/api/quizzes/${updatedQuizId}`, {
+					.patch(`https://badjjr.herokuapp.com/api/quizzes/${updatedQuizId}`, {
 						...quizFormData,
 						questions: updatedQuestions,
 					})
