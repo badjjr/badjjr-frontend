@@ -5,6 +5,8 @@ import { DataContext } from './dataContext';
 import { Routes, Route, Link } from 'react-router-dom';
 import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
+import Home from './Components/Home';
+import Categories from './Components/Categories';
 
 function App() {
 	// Use Context to share the following states between components.
@@ -35,11 +37,13 @@ function App() {
 			<div>
 				<header>
 					<h1>
-						<Link to='/'>🦡</Link>
+						<Link to='/'><img src="public/badger.png" alt="Badger Icon" /></Link>
 					</h1>
 				</header>
 				<main>
 					<Routes>
+						    <Route path = '/' element = { <Home /> } />
+          <Route path = '/categories' element = { <Categories /> } />
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
 						<Route path='/quiz-form-edit' element={<QuizFormEdit />}
