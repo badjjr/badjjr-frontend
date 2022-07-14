@@ -36,8 +36,6 @@ function App() {
 				setQuizQuestions,
 				quizId,
 				setQuizId,
-				quizAnswers,
-				setQuizAnswers,
 				categories,
 				setCategories,
 			}}>

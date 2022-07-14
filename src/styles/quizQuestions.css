@@ -27,3 +27,19 @@
 	background-color: rgb(125, 0, 0);
 	border-color: rgb(125, 0, 0);
 }
+
+#delete-answer-button:hover {
+	background-color: rgb(83, 0, 0);
+	border-color: rgb(83, 0, 0);
+}
+
+#submit-questions-button {
+	margin-top: 15px;
+	background-color: rgb(0, 109, 0);
+	border-color: rgb(0, 109, 0);
+}
+
+#submit-questions-button:hover {
+	background-color: rgb(0, 78, 0);
+	border-color: rgb(0, 78, 0);
+}
