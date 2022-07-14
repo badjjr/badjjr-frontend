@@ -41,15 +41,7 @@ function CategoriesList() {
           </Link>
         ))
       }
-      {
-        categories.map((cat) => {
-          return (
-            <Categories 
-            category={cat.category} />
-          )
-        })
-      }
-    </section>
+    </section> 
   );
 }
 
