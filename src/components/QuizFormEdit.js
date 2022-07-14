@@ -1,10 +1,10 @@
+import '../styles/quizFormEdit.css';
 import { useContext, useState, useEffect } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 
 function QuizFormEdit() {
 	const { quizFormData, setQuizFormData, setQuizQuestions, setUpdatedQuizId } =
@@ -31,15 +31,6 @@ function QuizFormEdit() {
 		};
 		getQuizById();
 	}, []);
-
-	//============================================================================
-	// MODAL
-	//============================================================================
-	// Display a modal to warn the user that changing the number of questions will
-	// delete all of the current questions.
-	const [showModal, setShowModal] = useState(false);
-	const handleCloseModal = () => setShowModal(false);
-	const handleShowModal = () => setShowModal(true);
 
 	//============================================================================
 	// SUBMITTING THE FORM
@@ -102,29 +93,13 @@ function QuizFormEdit() {
 						defaultValue={quizFormData.numberOfQuestions}
 						min='1'
 						max='20'
-						onClick={handleShowModal}
 						required
 					/>
-				</Form.Group>
-
-				<Modal
-					show={showModal}
-					onHide={handleCloseModal}
-					backdrop='static'
-					keyboard={false}>
-					<Modal.Header closeButton>
-						<Modal.Title>Heads up!</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						Changing the number of questions will delete all of your current
+					<p className='userNote'>
+						Note: Changing this number will delete all of your current
 						questions.
-					</Modal.Body>
-					<Modal.Footer>
-						<Button variant='primary' onClick={handleCloseModal}>
-							Understood
-						</Button>
-					</Modal.Footer>
-				</Modal>
+					</p>
+				</Form.Group>
 
 				<Form.Group>
 					<Form.Label htmlFor='category'>Category</Form.Label>

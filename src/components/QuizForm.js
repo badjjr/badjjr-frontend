@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function QuizForm() {
-	const { quizFormData, setQuizFormData, setQuizQuestions } =
+	const { setQuizFormData, setQuizQuestions } =
 		useContext(DataContext);
 	const navigate = useNavigate();
 

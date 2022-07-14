@@ -4,11 +4,10 @@ import { useState } from 'react';
 import { DataContext } from './dataContext';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
+import Categories from './components/Categories';
+import QuizzesByCategory from './components/QuizzesByCategory';
 import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
-import Create from './components/Create';
-import CategoriesList from './components/CategoriesList';
-import Categories from './components/Categories';
 import QuizFormEdit from './components/QuizFormEdit';
 import QuizQuestionsEdit from './components/QuizQuestionsEdit';
 
@@ -16,7 +15,6 @@ function App() {
 	// Use Context to share the following states between components.
 	const [quizFormData, setQuizFormData] = useState({});
 	const [quizQuestions, setQuizQuestions] = useState([]);
-	const [categories, setCategories] = useState([]);
 	const [updatedQuizId, setUpdatedQuizId] = useState('');
 
 	return (
@@ -26,25 +24,23 @@ function App() {
 				setQuizFormData,
 				quizQuestions,
 				setQuizQuestions,
-				categories,
-				setCategories,
 				updatedQuizId,
 				setUpdatedQuizId,
 			}}>
 			<div>
 				<header>
 					<h1>
-						<Link to='/'>
-							<img src='public/badger.png' alt='Badger Icon' />
-						</Link>
+						<Link to='/'>🦡</Link>
 					</h1>
 				</header>
 				<main>
 					<Routes>
 						<Route path='/' element={<Home />} />
-						<Route path='/create' element={<Create />} />
-						<Route path='/categories' element={<CategoriesList />} />
-						<Route path='/categories/:category' element={<Categories />} />
+						<Route path='/categories' element={<Categories />} />
+						<Route
+							path='/categories/:category'
+							element={<QuizzesByCategory />}
+						/>
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
 						<Route path='/quiz-form-edit/:id' element={<QuizFormEdit />} />
