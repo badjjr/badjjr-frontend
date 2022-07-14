@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { DataContext } from './dataContext';
 import Home from './components/Home';
 import CategoriesList from './components/CategoriesList';
-import Categories from './components/Categories';
 import { Routes, Route, Link } from 'react-router-dom';
 import DisplayQuiz from './components/DisplayQuiz';
 import Header from './components/Header';
@@ -27,8 +26,6 @@ function App() {
 			value={{
 				quizAnswers,
         setQuizAnswers,
-        numOfQuestions, 
-        setNumOfQuestions,
         quizFormData,
 				setQuizFormData,
 				quizQuestions,
@@ -47,7 +44,6 @@ function App() {
           <Route path='/quiz-form' element={<QuizForm />} />
 					<Route path='/quiz-questions' element={<QuizQuestions />} />
           <Route path = '/categories' element = { <CategoriesList /> } />
-          <Route path = '/categories/:category' element = { <Categories/> } />
 				</Routes>
         </div>
         </ DataContext.Provider>
