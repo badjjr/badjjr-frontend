@@ -1,5 +1,5 @@
 import '../styles/quizQuestions.css';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -21,7 +21,6 @@ function QuizQuestions() {
 		const updatedIncorrectAnswers = quizQuestions.map((question, index) => {
 			// The question to which the user is adding incorrect answers can be
 			// identified by its questionIndex.
-			// If the question type is True/False, prevent additional input fields.
 			if (index === questionIndex) {
 				// Add a new input field, value set to '', to the end of the question's
 				// incorrectAnswers array.

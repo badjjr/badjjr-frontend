@@ -3,42 +3,54 @@ import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function QuizFormEdit() {
 	// Hard-coded data
 	const testDATA = {
-		_id: '62cdb2952cd815e1b5509110',
-		title: 'Covalent Bonds',
-		numberOfQuestions: 10,
-		category: 'Chemistry',
+		_id: '62cf0973d81216a23fae6e98',
+		title: 'frappuccino',
+		numberOfQuestions: 2,
+		category: 'programming',
 		questions: [
 			{
-				type: 'Multiple Choice',
-				question: "What's the capital of Canada?",
-				answerChoices: ['Montreal', 'Toronto', 'Ottawa', 'Calgary'],
-				correctAnswer: 'Ottawa',
-				incorrectAnswers: ['Montreal', 'Toronto', 'Calgary'],
-				_id: '62cdb4dde962d123b684333e',
-				createdAt: '2022-07-12T17:52:29.833Z',
-				updatedAt: '2022-07-12T17:52:29.833Z',
+				type: 'multiple choice',
+				question: 'yum?',
+				answerChoices: ['yum', 'no'],
+				correctAnswer: 'yum',
+				incorrectAnswers: ['no'],
+				_id: '62cf0973d81216a23fae6e99',
+				createdAt: '2022-07-13T18:05:39.090Z',
+				updatedAt: '2022-07-13T18:05:39.090Z',
+			},
+			{
+				type: 'multiple choice',
+				question: 'hot?',
+				answerChoices: ['hot!', 'cold'],
+				correctAnswer: 'hot!',
+				incorrectAnswers: ['cold'],
+				_id: '62cf0973d81216a23fae6e9a',
+				createdAt: '2022-07-13T18:05:39.091Z',
+				updatedAt: '2022-07-13T18:05:39.091Z',
 			},
 		],
-		createdAt: '2022-07-12T17:42:45.473Z',
-		updatedAt: '2022-07-12T17:52:29.833Z',
-		__v: 1,
+		createdAt: '2022-07-13T18:05:39.091Z',
+		updatedAt: '2022-07-13T18:05:39.091Z',
+		__v: 0,
 	};
 
-	const { setQuizFormData } = useContext(DataContext);
+	const { setQuizFormData, setQuizQuestions } = useContext(DataContext);
 
 	const navigate = useNavigate();
 
-	// The following are used to populate the input fields with the current quiz
-	// data AND to keep track of any changes the user makes.
-	const [titleInput, setTitleInput] = useState(testDATA.title);
-	const [numberOfQuestionsInput, setNumberOfQuestionsInput] = useState(
-		testDATA.numberOfQuestions
-	);
-	const [categoryInput, setCategoryInput] = useState(testDATA.category);
+	//============================================================================
+	// MODAL
+	//============================================================================
+	// Display a modal to warn the user that changing the number of questions will
+	// delete all of the current questions.
+	const [showModal, setShowModal] = useState(false);
+	const handleCloseModal = () => setShowModal(false);
+	const handleShowModal = () => setShowModal(true);
 
 	//============================================================================
 	// SUBMITTING THE FORM
@@ -46,11 +58,26 @@ function QuizFormEdit() {
 	//============================================================================
 	const handleUpdatedQuizSubmit = (e) => {
 		e.preventDefault();
+		// Store user input for '# of Questions' in a variable for easy referral.
+		const numberOfQuestions = e.currentTarget['num-of-questions'].value;
 		setQuizFormData({
 			title: e.currentTarget['title'].value,
-			numberOfQuestions: e.currentTarget['num-of-questions'].value,
+			numberOfQuestions: numberOfQuestions,
 			category: e.currentTarget['category'].value,
 		});
+
+		// Initialize a list of quiz questions, the length of which is based on the
+		// numberOfQuestions value.
+		if (numberOfQuestions !== testDATA.numberOfQuestions)
+			setQuizQuestions(
+				new Array(parseInt(numberOfQuestions)).fill({
+					type: '',
+					question: '',
+					answerChoices: [''],
+					correctAnswer: '',
+					incorrectAnswers: [''],
+				})
+			);
 
 		// Navigate to the page holding the QuizQuestionsEdit component.
 		navigate('/quiz-questions-edit');
@@ -68,33 +95,53 @@ function QuizFormEdit() {
 					<Form.Control
 						type='text'
 						id='title'
-						value={titleInput}
-						onChange={(e) => setTitleInput(e.target.value)}
+						defaultValue={testDATA.title}
 						required
 					/>
 				</Form.Group>
+
 				<Form.Group>
 					<Form.Label htmlFor='num-of-questions'># of Questions</Form.Label>
 					<Form.Control
 						type='number'
 						id='num-of-questions'
-						value={numberOfQuestionsInput}
-						onChange={(e) => setNumberOfQuestionsInput(e.target.value)}
+						defaultValue={testDATA.numberOfQuestions}
 						min='1'
 						max='20'
+						onClick={handleShowModal}
 						required
 					/>
 				</Form.Group>
+
+				<Modal
+					show={showModal}
+					onHide={handleCloseModal}
+					backdrop='static'
+					keyboard={false}>
+					<Modal.Header closeButton>
+						<Modal.Title>Heads up!</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						Changing the number of questions will delete all of your current
+						questions.
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant='primary' onClick={handleCloseModal}>
+							Understood
+						</Button>
+					</Modal.Footer>
+				</Modal>
+
 				<Form.Group>
 					<Form.Label htmlFor='category'>Category</Form.Label>
 					<Form.Control
 						type='text'
 						id='category'
-						value={categoryInput}
-						onChange={(e) => setCategoryInput(e.target.value)}
+						defaultValue={testDATA.category}
 						required
 					/>
 				</Form.Group>
+
 				<Button variant='primary' type='submit' className='form-button'>
 					Next
 				</Button>

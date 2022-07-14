@@ -42,6 +42,7 @@ function QuizForm() {
 					<Form.Label htmlFor='title'>Title</Form.Label>
 					<Form.Control type='text' id='title' placeholder='French' required />
 				</Form.Group>
+
 				<Form.Group>
 					<Form.Label htmlFor='num-of-questions'># of Questions</Form.Label>
 					<Form.Control
@@ -53,6 +54,7 @@ function QuizForm() {
 						required
 					/>
 				</Form.Group>
+
 				<Form.Group>
 					<Form.Label htmlFor='category'>Category</Form.Label>
 					<Form.Control
