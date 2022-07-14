@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "../Styles/CategoriesList.css"
+import "../styles/CategoriesList.css"
+import Categories from "./Categories";
 
 function CategoriesList() {
+
   const [categories, setCategories] = useState([]);
   
   const myArr = categories.map((a) => (
@@ -30,8 +32,8 @@ function CategoriesList() {
     <section className = "category-container">
       {
         newArr.map((category) => (
-          <Link to = {`/categories/${category}`} className = "category-list" >
-            <ul key = { category } >
+          <Link to = {`/categories/${category}`} key = { category } className = "category-list" >
+            <ul>
               <li className = "category-item">
                 { category.toUpperCase() }
               </li>
@@ -39,9 +41,15 @@ function CategoriesList() {
           </Link>
         ))
       }
-
-
-    </section> 
+      {
+        categories.map((cat) => {
+          return (
+            <Categories 
+            category={cat.category} />
+          )
+        })
+      }
+    </section>
   );
 }
 

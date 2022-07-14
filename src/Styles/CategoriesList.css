@@ -7,6 +7,7 @@
   grid-template-rows: 140px 140px 140px;
   grid-template-columns: 167px 167px;
   border-style: 10px black;
+  justify-content: center;
 }
 
 .category-list {
