@@ -3,14 +3,6 @@ import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
 import { Routes, Route, Link } from 'react-router-dom';
-<<<<<<< HEAD
-=======
-import React from 'react';
-import Home from './components/Home';
-import CategoriesList from './components/CategoriesList';
-import Categories from './components/Categories';
-import Quiz from './components/Quiz';
->>>>>>> eed70a2 (Pull quiz by category and add function to edit and delete - Brian and Rabbi)
 import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
 import Home from './components/Home';
@@ -31,6 +23,14 @@ function App() {
 
 	const [quizQuestions, setQuizQuestions] = useState([]);
 	const [categories, setCategories] = useState([]);
+
+	const [updatedQuizFormData, setUpdatedQuizFormData] = useState({
+		title: '',
+		numberOfQuestions: 0,
+		category: '',
+	});
+
+	const [updatedQuizQuestions, setUpdatedQuizQuestions] = useState([]);
 
 	return (
 		<DataContext.Provider
