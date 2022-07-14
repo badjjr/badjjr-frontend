@@ -9,6 +9,7 @@ import Home from './Components/Home';
 import Create from './Components/Create';
 import CategoriesList from './Components/CategoriesList';
 import Categories from './Components/Categories';
+import QuizFormEdit from './components/QuizFormEdit';
 
 function App() {
 	// Use Context to share the following states between components.
@@ -50,7 +51,7 @@ function App() {
 						<Route path = '/categories/:category' element = { <Categories/> } />
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
-						<Route path='/quiz-form-edit' element={<QuizFormEdit />}
+						<Route path='/quiz-form-edit' element={<QuizFormEdit />} />
 					</Routes>
 				</main>
 			</div>

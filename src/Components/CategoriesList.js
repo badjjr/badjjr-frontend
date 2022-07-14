@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "../Styles/CategoriesList.css"
+import "../styles/CategoriesList.css"
 
 function CategoriesList() {
   const [categories, setCategories] = useState([]);
