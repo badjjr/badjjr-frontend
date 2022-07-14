@@ -5,7 +5,6 @@ import { DataContext } from './dataContext';
 import { Routes, Route, Link } from 'react-router-dom';
 import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
-import Home from './components/Home';
 import Create from './components/Create';
 import CategoriesList from './components/CategoriesList';
 // import Categories from './components/Categories';
@@ -13,15 +12,15 @@ import QuizFormEdit from './components/QuizFormEdit';
 import QuizQuestionsEdit from './components/QuizQuestionsEdit';
 
 function App() {
-	// Use Context to share the following states between components.
-	const [quizFormData, setQuizFormData] = useState({
-		title: '',
-		numberOfQuestions: 0,
-		category: '',
-	});
+	// title: '',
+	// numberOfQuestions: '',
+	// category: '',
 
+	// Use Context to share the following states between components.
+	const [quizFormData, setQuizFormData] = useState({});
 	const [quizQuestions, setQuizQuestions] = useState([]);
 	const [categories, setCategories] = useState([]);
+	const [updatedQuizId, setUpdatedQuizId] = useState('');
 
 	return (
 		<DataContext.Provider
@@ -32,6 +31,8 @@ function App() {
 				setQuizQuestions,
 				categories,
 				setCategories,
+				updatedQuizId,
+				setUpdatedQuizId,
 			}}>
 			<div>
 				<header>
@@ -49,7 +50,7 @@ function App() {
 						{/* <Route path='/categories/:category' element={<Categories />} /> */}
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
-						<Route path='/quiz-form-edit' element={<QuizFormEdit />} />
+						<Route path='/quiz-form-edit/:id' element={<QuizFormEdit />} />
 						<Route
 							path='/quiz-questions-edit'
 							element={<QuizQuestionsEdit />}

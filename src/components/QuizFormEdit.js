@@ -1,47 +1,35 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { DataContext } from '../dataContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function QuizFormEdit() {
-	// Hard-coded data
-	const testDATA = {
-		_id: '62cf0973d81216a23fae6e98',
-		title: 'frappuccino',
-		numberOfQuestions: 2,
-		category: 'programming',
-		questions: [
-			{
-				type: 'multiple choice',
-				question: 'yum?',
-				answerChoices: ['yum', 'no'],
-				correctAnswer: 'yum',
-				incorrectAnswers: ['no'],
-				_id: '62cf0973d81216a23fae6e99',
-				createdAt: '2022-07-13T18:05:39.090Z',
-				updatedAt: '2022-07-13T18:05:39.090Z',
-			},
-			{
-				type: 'multiple choice',
-				question: 'hot?',
-				answerChoices: ['hot!', 'cold'],
-				correctAnswer: 'hot!',
-				incorrectAnswers: ['cold'],
-				_id: '62cf0973d81216a23fae6e9a',
-				createdAt: '2022-07-13T18:05:39.091Z',
-				updatedAt: '2022-07-13T18:05:39.091Z',
-			},
-		],
-		createdAt: '2022-07-13T18:05:39.091Z',
-		updatedAt: '2022-07-13T18:05:39.091Z',
-		__v: 0,
-	};
-
-	const { setQuizFormData, setQuizQuestions } = useContext(DataContext);
+	const { quizFormData, setQuizFormData, setQuizQuestions, setUpdatedQuizId } =
+		useContext(DataContext);
 
 	const navigate = useNavigate();
+
+	const { id } = useParams();
+
+	useEffect(() => {
+		const getQuizById = async () => {
+			try {
+				const res = await axios(
+					`https://badjjr.herokuapp.com/api/quizzes/${id}`
+				).then((res) => {
+					console.log('Success! Here is the quiz:', res);
+					setQuizFormData(res.data);
+					setUpdatedQuizId(res.data._id);
+				});
+			} catch (err) {
+				console.log('Uh-oh! Something went wrong...', err);
+			}
+		};
+		getQuizById();
+	}, []);
 
 	//============================================================================
 	// MODAL
@@ -68,7 +56,7 @@ function QuizFormEdit() {
 
 		// Initialize a list of quiz questions, the length of which is based on the
 		// numberOfQuestions value.
-		if (numberOfQuestions !== testDATA.numberOfQuestions)
+		if (numberOfQuestions !== quizFormData.numberOfQuestions)
 			setQuizQuestions(
 				new Array(parseInt(numberOfQuestions)).fill({
 					type: '',
@@ -95,7 +83,7 @@ function QuizFormEdit() {
 					<Form.Control
 						type='text'
 						id='title'
-						defaultValue={testDATA.title}
+						defaultValue={quizFormData.title}
 						required
 					/>
 				</Form.Group>
@@ -105,7 +93,7 @@ function QuizFormEdit() {
 					<Form.Control
 						type='number'
 						id='num-of-questions'
-						defaultValue={testDATA.numberOfQuestions}
+						defaultValue={quizFormData.numberOfQuestions}
 						min='1'
 						max='20'
 						onClick={handleShowModal}
@@ -137,7 +125,7 @@ function QuizFormEdit() {
 					<Form.Control
 						type='text'
 						id='category'
-						defaultValue={testDATA.category}
+						defaultValue={quizFormData.category}
 						required
 					/>
 				</Form.Group>

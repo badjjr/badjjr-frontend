@@ -7,73 +7,8 @@ import Button from 'react-bootstrap/Button';
 import { useEffect } from 'react';
 
 function QuizQuestionsEdit() {
-	// Hard-coded data
-	const testDATA = {
-		_id: '62cf0973d81216a23fae6e98',
-		title: 'frappuccino',
-		numberOfQuestions: 2,
-		category: 'programming',
-		questions: [
-			{
-				type: 'multiple choice',
-				question: 'yum?',
-				answerChoices: ['yum', 'no'],
-				correctAnswer: 'yum',
-				incorrectAnswers: ['no'],
-				_id: '62cf0973d81216a23fae6e99',
-				createdAt: '2022-07-13T18:05:39.090Z',
-				updatedAt: '2022-07-13T18:05:39.090Z',
-			},
-			{
-				type: 'multiple choice',
-				question: 'hot?',
-				answerChoices: ['hot!', 'cold'],
-				correctAnswer: 'hot!',
-				incorrectAnswers: ['cold'],
-				_id: '62cf0973d81216a23fae6e9a',
-				createdAt: '2022-07-13T18:05:39.091Z',
-				updatedAt: '2022-07-13T18:05:39.091Z',
-			},
-		],
-		createdAt: '2022-07-13T18:05:39.091Z',
-		updatedAt: '2022-07-13T18:05:39.091Z',
-		__v: 0,
-	};
-
-	const { quizFormData, setQuizFormData, quizQuestions, setQuizQuestions } =
+	const { quizFormData, quizQuestions, setQuizQuestions, updatedQuizId } =
 		useContext(DataContext);
-
-	useEffect(() => {
-		setQuizFormData({
-			_id: '62cf0973d81216a23fae6e98',
-			title: 'frappuccino',
-			numberOfQuestions: 2,
-			category: 'programming',
-		});
-
-		setQuizQuestions([
-			{
-				type: 'multiple choice',
-				question: 'yum?',
-				answerChoices: ['yum', 'no'],
-				correctAnswer: 'yum',
-				incorrectAnswers: ['no'],
-				_id: '62cf0973d81216a23fae6e99',
-				createdAt: '2022-07-13T18:05:39.090Z',
-				updatedAt: '2022-07-13T18:05:39.090Z',
-			},
-			{
-				type: 'multiple choice',
-				question: 'hot?',
-				answerChoices: ['hot!', 'cold'],
-				correctAnswer: 'hot!',
-				incorrectAnswers: ['cold'],
-				_id: '62cf0973d81216a23fae6e9a',
-				createdAt: '2022-07-13T18:05:39.091Z',
-				updatedAt: '2022-07-13T18:05:39.091Z',
-			},
-		]);
-	}, []);
 
 	const navigate = useNavigate();
 
@@ -149,13 +84,13 @@ function QuizQuestionsEdit() {
 		const patch = async () => {
 			try {
 				const res = await axios
-					.patch(`http://badjjr.herokuapp.com/api/quizzes/${testDATA._id}`, {
+					.patch(`http://badjjr.herokuapp.com/api/quizzes/${updatedQuizId}`, {
 						...quizFormData,
 						questions: updatedQuestions,
 					})
 					.then((res) => {
 						console.log('Quiz successfully added!', res);
-						navigate(`/quiz/${testDATA._id}`);
+						navigate(`/quiz/${updatedQuizId}`);
 					});
 			} catch (error) {
 				console.log('Uh-oh! Something went wrong...', error);
