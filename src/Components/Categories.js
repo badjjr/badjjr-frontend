@@ -1,12 +1,19 @@
 import React from "react";
-import { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+// import { useContext } from "react";
+// import { DataContext } from "../dataContext";
+import QuizDeleteAndEdit from "./QuizDeleteAndEdit"
+import { useParams } from "react-router-dom";
 
-function Categories(props) {
-  const [categories, setCategories] = useState([]);
+
+function Categories() {
+  // const { categories, setCategories } = useContext(DataContext);
+  const [categories, setCategories] = useState([])
+  const {category} = useParams()
 
   useEffect(() => {
-    fetch("https://badjjr.herokuapp.com/api/quizzes")
+    fetch(`https://badjjr.herokuapp.com/api/quizzes/categories/${category}`)
       .then((res) => res.json())
       .then((json) => {
         setCategories(json)
@@ -17,13 +24,14 @@ function Categories(props) {
   return (
     <section>
       {
-        categories.map((cats) => (
-          <div key={cats._id}>
-            <h3> Title: { cats.title } </h3>
-            <h4> No. of Questions: { cats.numberOfQuestions } </h4>
-            <h4> Category: { cats.category } </h4>
-          </div>
-        ))
+        categories.map((cats) => {
+          return (
+            <QuizDeleteAndEdit 
+            id={cats._id}
+            title={cats.title}
+            category={cats.category} />
+          )
+        })
       }
     </section>
   )

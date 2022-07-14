@@ -22,34 +22,37 @@ function App() {
 	});
   const [quizId, setQuizId] = useState()
 	const [quizQuestions, setQuizQuestions] = useState([]);
+	const [categories, setCategories] = useState([]);
 
 	return (
 		<DataContext.Provider
 			value={{
 				quizAnswers,
-        setQuizAnswers,
-        quizFormData,
+				setQuizAnswers,
+				quizFormData,
 				setQuizFormData,
 				quizQuestions,
 				setQuizQuestions,
-        quizId,
-        setQuizId,
-        quizAnswers,
-        setQuizAnswers
+				quizId,
+				setQuizId,
+				quizAnswers,
+				setQuizAnswers,
+				categories,
+				setCategories,
 			}}>
 			<div className='App'>
 				<Header />
 				<Routes>
-          <Route path='/' element={<Home />} />
+					<Route path='/' element={<Home />} />
 					<Route path='/quiz/:id' element={<DisplayQuiz />} />
 					<Route path='/score' element={<Score />} />
-          <Route path='/quiz-form' element={<QuizForm />} />
+					<Route path='/quiz-form' element={<QuizForm />} />
 					<Route path='/quiz-questions' element={<QuizQuestions />} />
-          <Route path = '/categories' element = { <CategoriesList /> } />
+					<Route path='/categories' element={<CategoriesList />} />
 				</Routes>
-        </div>
-        </ DataContext.Provider>
-)
+			</div>
+		</DataContext.Provider>
+	);
 }
 
 export default App;
