@@ -11,9 +11,7 @@ import Header from './components/Header';
 import Score from './components/Score';
 import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
-import Header from './components/Header';
-import Score from './components/Score';
-import DisplayQuiz from './components/DisplayQuiz';
+
 
 function App() {
 	const [quizAnswers, setQuizAnswers] = useState([]);
@@ -56,8 +54,6 @@ function App() {
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
             <Route path='/quiz/:id' element={<DisplayQuiz />} />
 					<Route path='/score' element={<Score />} />
-					<Route path='/quiz-form' element={<QuizForm />} />
-					<Route path='/quiz-questions' element={<QuizQuestions />} />
 					<Route path='/categories' element={<CategoriesList />} />
 				</Routes>
       </main>
