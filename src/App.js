@@ -34,7 +34,9 @@ function App() {
 				quizQuestions,
 				setQuizQuestions,
         quizId,
-        setQuizId
+        setQuizId,
+        quizAnswers,
+        setQuizAnswers
 			}}>
 			<div className='App'>
 				<Header />
