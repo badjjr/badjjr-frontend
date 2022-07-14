@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../Styles/CategoriesList.css"
 
@@ -27,15 +27,19 @@ function CategoriesList() {
 
   return(
 
-    <section>
-  
-        <Link to = '/category/animals'>
-          {newArr.map((category) => (
-            <ul key = { category }>
-              <li> { category } </li>
+    <section className = "category-container">
+      {
+        newArr.map((category) => (
+          <Link to = {`/category/${category}`} className = "category-list" >
+            <ul key = { category } >
+              <li className = "category-item">
+                { category.toUpperCase() }
+              </li>
             </ul>
-          ))}
-        </Link>
+          </Link>
+        ))
+      }
+
 
     </section>
     

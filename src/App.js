@@ -6,6 +6,8 @@ import { Routes, Route, Link } from 'react-router-dom';
 import QuizForm from './components/QuizForm';
 import QuizQuestions from './components/QuizQuestions';
 import Home from './Components/Home';
+import Create from './Components/Create';
+import CategoriesList from './Components/CategoriesList';
 import Categories from './Components/Categories';
 
 function App() {
@@ -43,7 +45,9 @@ function App() {
 				<main>
 					<Routes>
 						    <Route path = '/' element = { <Home /> } />
-          <Route path = '/categories' element = { <Categories /> } />
+						<Route path = '/create' element = { <Create /> } /> 
+						<Route path = '/categories' element = { <CategoriesList /> } />
+						<Route path = '/categories/:category' element = { <Categories/> } />
 						<Route path='/quiz-form' element={<QuizForm />} />
 						<Route path='/quiz-questions' element={<QuizQuestions />} />
 						<Route path='/quiz-form-edit' element={<QuizFormEdit />}
