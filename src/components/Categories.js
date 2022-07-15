@@ -12,12 +12,10 @@ function Categories() {
 
 	// map over the categories data and only grab the category sections of the api and set to variable
 	// set a new variable called newArr
+	const myArr = categories.map((a) => a.category);
 	// use new Set on myArr to get rid of duplicates
 	// then map over that array with no duplicates
-	
-	const myArr = categories.map((a) => a.category);
-
-	const newArr = [...new Set(myArr)].map((b) => b);
+	const newArr = [...new Set(myArr)];
 
 	useEffect(() => {
 		setError('');
