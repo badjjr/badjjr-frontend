@@ -64,7 +64,7 @@ function QuizFormEdit() {
 		}
 
 		// Navigate to the page holding the QuizQuestionsEdit component.
-		navigate('/quiz-questions-edit');
+		navigate('/quizQuestionsEdit');
 	};
 
 	//============================================================================
