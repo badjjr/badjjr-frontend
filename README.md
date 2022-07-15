@@ -1,15 +1,12 @@
-# 🦡 Badjjr
+# Badjjr
 
 ## Project Description
 
 This is the frontend of our full stack MERN application, [Badjjr](https://badjjr.netlify.app). Through communication with our [Badjjr API](https://github.com/badjjr/badjjr-backend), users are able to complete, create, edit, and delete quizzes.
 
-// Mobile Screenshots
-// Desktop Screenshots
-
 ## Technologies
 
-The frontend utilizes JSX, React-Bootstrap, and, for fetching data, Axios.
+The frontend utilizes JSX, React-Bootstrap, React Router, React Context, as well as Axios (for fetching data).
 
 ## Installation
 
