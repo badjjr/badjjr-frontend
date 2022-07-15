@@ -23,8 +23,8 @@ function LoginPage() {
 			try {
 				const res = await axios
 					.post('https://badjjr.herokuapp.com/api/users/signin', {
-						username: e.currentTarget['username'].value,
-						password: e.currentTarget['password'].value,
+						username: e.currentTarget['username-login'].value,
+						password: e.currentTarget['password-login'].value,
 					})
 					.then((res) => {
 						console.log('We have authorized the user!', res);
