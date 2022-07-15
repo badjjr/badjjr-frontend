@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function LoginPage() {
-	const { username, setUsername, setPassword, setIsLoggedIn } =
+	const { username, setUsername, setPassword, setIsLoggedIn, setToken } =
 		useContext(DataContext);
 	const navigate = useNavigate();
 	// Use state to handle errors.
@@ -21,7 +21,7 @@ function LoginPage() {
 			setLoading(true);
 			try {
 				const res = await axios
-					.post('https://badjjr.herokuapp.com/api/user', {
+					.post('https://badjjr.herokuapp.com/api/users/signin', {
 						username: e.currentTarget['username'].value,
 						password: e.currentTarget['password'].value,
 					})
@@ -29,6 +29,7 @@ function LoginPage() {
 						console.log('We have authorized the user!', res);
 						// Once authorized, navigate the user to Home.
 						setIsLoggedIn(true);
+						setToken(res.data.token);
 						setLoading(false);
 						navigate('/home');
 					});

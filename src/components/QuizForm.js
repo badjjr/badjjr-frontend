@@ -31,7 +31,7 @@ function QuizForm() {
 			})
 		);
 		// Navigate to the page holding the QuizQuestions component.
-		navigate('/quiz-questions');
+		navigate('/quizQuestions');
 	};
 
 	return (

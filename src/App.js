@@ -66,11 +66,11 @@ function App() {
 								path='/categories/:category'
 								element={<QuizzesByCategory />}
 							/>
-							<Route path='/quiz-form' element={<QuizForm />} />
-							<Route path='/quiz-questions' element={<QuizQuestions />} />
-							<Route path='/quiz-form-edit/:id' element={<QuizFormEdit />} />
+							<Route path='/quizForm' element={<QuizForm />} />
+							<Route path='/quizQuestions' element={<QuizQuestions />} />
+							<Route path='/quizFormEdit/:id' element={<QuizFormEdit />} />
 							<Route
-								path='/quiz-questions-edit'
+								path='/quizQuestionsEdit'
 								element={<QuizQuestionsEdit />}
 							/>
 							<Route path='/quiz/:id' element={<DisplayQuiz />} />
