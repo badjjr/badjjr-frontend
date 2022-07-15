@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import '../styles/home.css';
 
 function Home() {
