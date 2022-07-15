@@ -6,9 +6,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function LoginPage() {
-	const { username, setUsername, setIsLoggedIn } = useContext(DataContext);
+	const { username, setUsername, setPassword, setIsLoggedIn } =
+		useContext(DataContext);
 	const navigate = useNavigate();
 	// Use state to handle errors.
+	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 
 	const handleLoginSubmit = (e) => {
@@ -16,9 +18,10 @@ function LoginPage() {
 		// Send a POST request to authorize a user.
 		const post = async () => {
 			setError('');
+			setLoading(true);
 			try {
 				const res = await axios
-					.post('https://badjjr.herokuapp.com/api/user', {
+					.post('http://localhost:8000/api/user', {
 						username: e.currentTarget['username'].value,
 						password: e.currentTarget['password'].value,
 					})
@@ -26,9 +29,11 @@ function LoginPage() {
 						console.log('We have authorized the user!', res);
 						// Once authorized, navigate the user to Home.
 						setIsLoggedIn(true);
+						setLoading(false);
 						navigate('/home');
 					});
 			} catch (error) {
+				setLoading(false);
 				console.log("Uh-oh! The user wasn't authorized...", error);
 				setError(
 					'Hm...something went wrong. Please try again or contact us at support@badjjr.com.'
@@ -40,6 +45,7 @@ function LoginPage() {
 
 	useEffect((e) => {
 		setUsername('');
+		setPassword('');
 	}, []);
 
 	return (
@@ -73,7 +79,8 @@ function LoginPage() {
 					Log In
 				</Button>
 			</Form>
-			<p>{error && error}</p>
+			{loading && 'Logging in...'}
+			{error && error}
 		</div>
 	);
 }

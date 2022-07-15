@@ -6,9 +6,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function SignupPage() {
-	const { username, setUsername, setIsLoggedIn } = useContext(DataContext);
+	const { username, setUsername, setPassword, setIsLoggedIn } =
+		useContext(DataContext);
 	const navigate = useNavigate();
 	// Use state to handle errors.
+	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 
 	const handleSignupSubmit = (e) => {
@@ -16,6 +18,7 @@ function SignupPage() {
 		// Send a POST request to add a new user to the database.
 		const post = async () => {
 			setError('');
+			setLoading(true);
 			try {
 				const res = await axios
 					.post('https://badjjr.herokuapp.com/api/user/new', {
@@ -26,9 +29,11 @@ function SignupPage() {
 						console.log('Success! A new user!', res);
 						// Automatically log the user in upon successful signup.
 						setIsLoggedIn(true);
+						setLoading(false);
 						navigate('/home');
 					});
 			} catch (error) {
+        setLoading(false);
 				console.log("Uh-oh! A new user wasn't created...", error);
 				setError(
 					'Hm...something went wrong. Please try again or contact us at support@badjjr.com.'
@@ -40,6 +45,7 @@ function SignupPage() {
 
 	useEffect((e) => {
 		setUsername('');
+		setPassword('');
 	}, []);
 
 	return (
@@ -73,7 +79,8 @@ function SignupPage() {
 					Sign Up
 				</Button>
 			</Form>
-			<p>{error && error}</p>
+			{loading && 'Signing up...'}
+			{error && error}
 		</div>
 	);
 }

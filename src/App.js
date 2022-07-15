@@ -21,6 +21,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 function App() {
 	// Use Context to share the following states between components.
 	const [username, setUsername] = useState();
+	const [password, setPassword] = useState();
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [quizFormData, setQuizFormData] = useState({});
 	const [quizQuestions, setQuizQuestions] = useState([]);
@@ -33,6 +34,8 @@ function App() {
 			value={{
 				username,
 				setUsername,
+				password,
+				setPassword,
 				isLoggedIn,
 				setIsLoggedIn,
 				quizFormData,
