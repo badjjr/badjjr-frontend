@@ -33,7 +33,7 @@ function SignupPage() {
 						navigate('/home');
 					});
 			} catch (error) {
-        setLoading(false);
+				setLoading(false);
 				console.log("Uh-oh! A new user wasn't created...", error);
 				setError(
 					'Hm...something went wrong. Please try again or contact us at support@badjjr.com.'
