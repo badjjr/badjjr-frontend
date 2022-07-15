@@ -162,13 +162,13 @@ function QuizQuestions() {
 								type='button'
 								id='add-answer-button'
 								onClick={() => handleIncorrectAnswersAdd(questionIndex)}>
-								Add answer choice
+								Add Answer
 							</Button>
 							<Button
 								type='button'
 								id='delete-answer-button'
 								onClick={() => handleIncorrectAnswersDelete(questionIndex)}>
-								Delete answer choice
+								Delete Answer
 							</Button>
 						</div>
 					</div>

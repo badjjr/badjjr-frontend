@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate, Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import '../styles/home.css';
 
 function Home() {
@@ -14,18 +16,24 @@ function Home() {
 
 	return (
 		<div className='home-div'>
-			<h3 className='welcome-msg'>
-				{`Hey ${username}! What do you want to do?`}
-			</h3>
-			<ul className='home-list'>
-				<Link to='/categories' style={{ textDecoration: 'none' }}>
-					<li className='list-item'>Take a Quiz</li>
+			<h3 className='welcome-msg'> {`Hey ${username}! What do you want to do?`} </h3>
+			<div className='home-list'>
+				<Link to='/categories' id='link-take'>
+					<Button
+					type='button'
+					id='take-quiz'>
+						Take a Quiz
+					</Button>
 				</Link>
-				<Link to='/quiz-form' style={{ textDecoration: 'none' }}>
-					<li className='list-item'>Make a Quiz</li>
+				<Link to='/quiz-form' id='link-make'>
+					<Button
+					type='button'
+					id='make-quiz'>
+						Make a Quiz
+					</Button>
 				</Link>
-			</ul>
-			<button onClick={handleLogoutClick}>Log Out</button>
+			</div>
+				<button onClick={handleLogoutClick}>Log Out</button>
 		</div>
 	);
 }

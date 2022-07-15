@@ -35,6 +35,7 @@ function QuizzesByCategory() {
 			{categories.map((cats) => {
 				return (
 					<QuizDeleteAndEdit
+						key={cats._id}
 						id={cats._id}
 						title={cats.title}
 						category={cats.category}

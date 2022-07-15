@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../styles/quizQuestionsEdit.css'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -159,13 +160,13 @@ function QuizQuestionsEdit() {
 								type='button'
 								id='add-answer-button'
 								onClick={() => handleIncorrectAnswersAdd(questionIndex)}>
-								Add answer choice
+								Add Answer
 							</Button>
 							<Button
 								type='button'
 								id='delete-answer-button'
 								onClick={() => handleIncorrectAnswersDelete(questionIndex)}>
-								Delete answer choice
+								Delete Answer
 							</Button>
 						</div>
 					</div>
