@@ -1,0 +1,15 @@
+.access-list {
+  padding: 0;
+}
+
+.list-item {
+  background-color: #ff9478 !important;
+  color: black;
+}
+
+@media screen and (min-width: 670px) {
+	.list-item {
+		display: inline-block;
+		width: 20%;
+	}
+}

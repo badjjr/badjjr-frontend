@@ -1,0 +1,27 @@
+.welcome-back {
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+#username-login,
+#password-login {
+  display: inline-block;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 20px;
+}
+
+.login-btn {
+  margin: 40px;
+  background-color: #ff9478;
+  color: black;
+}
+
+@media screen and (min-width: 670px) {
+	
+  #username-login,
+  #password-login {
+		width: 20%;
+    margin-right: 90px;
+	}
+}

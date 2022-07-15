@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import '../styles/loginPage.css'
 
 function LoginPage() {
 	const { username, setUsername, setPassword, setIsLoggedIn, setToken } =
@@ -51,13 +52,13 @@ function LoginPage() {
 
 	return (
 		<div>
-			<p>Welcome back!</p>
-			<Form onSubmit={handleLoginSubmit}>
+			<p className='welcome-back'>Welcome back!</p>
+			<Form onSubmit={handleLoginSubmit} className='form-container'>
 				<Form.Group>
 					<Form.Label htmlFor='username'>Username</Form.Label>
 					<Form.Control
 						type='text'
-						id='username'
+						id='username-login'
 						placeholder='bradjjr'
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -69,14 +70,14 @@ function LoginPage() {
 					<Form.Label htmlFor='password'>Password</Form.Label>
 					<Form.Control
 						type='password'
-						id='password'
+						id='password-login'
 						minLength='8'
 						placeholder='At least 8 characters'
 						required
 					/>
 				</Form.Group>
 
-				<Button variant='primary' type='submit'>
+				<Button className='login-btn' variant='primary' type='submit'>
 					Log In
 				</Button>
 			</Form>
