@@ -1,0 +1,27 @@
+.join-msg {
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+#username-signup,
+#password-signup {
+  display: inline-block;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 20px;
+}
+
+.signup-btn {
+  margin-top: 40px;
+  background-color: #ff9478;
+  color: black;
+}
+
+@media screen and (min-width: 670px) {
+	
+  #username-signup,
+  #password-signup {
+		width: 20%;
+    margin-right: 90px;
+	}
+}

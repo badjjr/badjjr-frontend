@@ -10,6 +10,11 @@ function Categories() {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 
+	// map over the categories data and only grab the category sections of the api and set to variable
+	// set a new variable called newArr
+	// use new Set on myArr to get rid of duplicates
+	// then map over that array with no duplicates
+	
 	const myArr = categories.map((a) => a.category);
 
 	const newArr = [...new Set(myArr)].map((b) => b);
