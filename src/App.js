@@ -3,6 +3,9 @@ import './App.css';
 import { useState } from 'react';
 import { DataContext } from './dataContext';
 import { Routes, Route, Link } from 'react-router-dom';
+import AccessPage from './components/AccessPage';
+import SignUpPage from './components/SignUpPage';
+import LogInPage from './components/LogInPage';
 import Home from './components/Home';
 import Categories from './components/Categories';
 import QuizzesByCategory from './components/QuizzesByCategory';
@@ -16,17 +19,18 @@ import Score from './components/Score';
 
 function App() {
 	// Use Context to share the following states between components.
+	const [username, setUsername] = useState();
 	const [quizFormData, setQuizFormData] = useState({});
 	const [quizQuestions, setQuizQuestions] = useState([]);
-  const [quizId, setQuizId] = useState()
-	const [updatedQuizId, setUpdatedQuizId] = useState('');
-  const [quizAnswers, setQuizAnswers] = useState([]);
+	const [quizId, setQuizId] = useState();
+	const [updatedQuizId, setUpdatedQuizId] = useState();
+	const [quizAnswers, setQuizAnswers] = useState([]);
 
 	return (
 		<DataContext.Provider
 			value={{
-				quizAnswers,
-				setQuizAnswers,
+				username,
+				setUsername,
 				quizFormData,
 				setQuizFormData,
 				quizQuestions,
@@ -35,14 +39,19 @@ function App() {
 				setUpdatedQuizId,
 				quizId,
 				setQuizId,
+				quizAnswers,
+				setQuizAnswers,
 			}}>
 			<div>
 				<header>
-						<Header />
+					<Header />
 				</header>
 				<main>
 					<Routes>
-						<Route path='/' element={<Home />} />
+						<Route path='/' element={<AccessPage />} />
+						<Route path='/sign-up' element={<SignUpPage />} />
+						<Route path='/log-in' element={<LogInPage />} />
+						<Route path='/home' element={<Home />} />
 						<Route path='/categories' element={<Categories />} />
 						<Route
 							path='/categories/:category'
@@ -55,13 +64,13 @@ function App() {
 							path='/quiz-questions-edit'
 							element={<QuizQuestionsEdit />}
 						/>
-            <Route path='/quiz/:id' element={<DisplayQuiz />} />
-					  <Route path='/score' element={<Score />} />
+						<Route path='/quiz/:id' element={<DisplayQuiz />} />
+						<Route path='/score' element={<Score />} />
 					</Routes>
 				</main>
 			</div>
 		</DataContext.Provider>
-)
+	);
 }
 
 export default App;
