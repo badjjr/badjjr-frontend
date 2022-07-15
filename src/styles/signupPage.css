@@ -1,0 +1,13 @@
+#username-signup,
+#password-signup {
+  display: inline-block;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 20px;
+}
+
+.signup-btn {
+  margin: 20px;
+  background-color: #ff9478;
+  color: black;
+}

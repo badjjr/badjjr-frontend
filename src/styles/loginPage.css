@@ -1,0 +1,13 @@
+#username-box,
+#password-box {
+  display: inline-block;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 20px;
+}
+
+.login-btn {
+  margin: 20px;
+  background-color: #ff9478;
+  color: black;
+}

@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import '../styles/accessPage.css'
 
 function AccessPage() {
 	return (
 		<div>
-			<h3>Welcome to Badjjr!</h3>
-			<ul>
+			<h3 className='welcome-msg'>Welcome to Badjjr!</h3>
+			<ul className='access-list'>
 				<Link to='/signup'>
 					<li className='list-item'>Sign Up</li>
 				</Link>
