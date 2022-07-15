@@ -3,4 +3,10 @@ body {
 }
 div {
     margin-top: 20px;
+    color: white;
+}
+
+.return-home-btn {
+    background-color: #ff9478;
+    color: white;
 }

@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import { DataContext } from '../dataContext';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button'
 
 function Score() {
 	const { quizAnswers, quizId } = useContext(DataContext);
@@ -63,7 +64,11 @@ function Score() {
 						questions correctly.
 					</p>
 					<Link to='/home'>
-						<button className='return-home-btn'>Return Home</button>
+						<Button
+						type='button'
+						className='return-home-btn'>
+							Return Home
+						</Button>
 					</Link>
 				</div>
 			) : (

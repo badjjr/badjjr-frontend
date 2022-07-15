@@ -3,6 +3,8 @@ import '../styles/displayQuizStyle.css';
 import { useState, useEffect, useContext } from 'react';
 import { DataContext } from '../dataContext';
 import { Link, useParams } from 'react-router-dom';
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 import axios from 'axios';
 
 function DisplayQuiz() {
@@ -51,33 +53,41 @@ function DisplayQuiz() {
 									Question <span className='question-number'>{index + 1}</span>{' '}
 									of {quizQuestionData.length}
 								</h4>
-								{
-									<label className='quiz-question' htmlFor={`${index}`}>
-										{quizQuestionData[index].question}
-									</label>
-								}
-								{question.map((choice, choiceIndex) => {
-									return (
-										<div
-											className='quiz-answer-choice'
-											key={`${question._id}: ${choiceIndex}`}>
-											<input
-												className='input-button'
-												type='radio'
-												name={`${index}`}
-												value={choice}
-												key={`${question._id}: ${choiceIndex}`}
-												onChange={(event) => {
-													setQuizAnswers({
-														...quizAnswers,
-														[event.target.name]: event.target.value,
-													});
-												}}
-											/>
-											{choice}
-										</div>
-									);
-								})}
+								<Card>
+									<Card.Body>
+										<Card.Title>
+											{
+												<label className='quiz-question' htmlFor={`${index}`}>
+													{quizQuestionData[index].question}
+												</label>
+											}
+										</Card.Title>
+										<Card.Text>
+											{question.map((choice, choiceIndex) => {
+												return (
+													<div
+														className='quiz-answer-choice'
+														key={`${question._id}: ${choiceIndex}`}>
+														<input
+															className='input-button'
+															type='radio'
+															name={`${index}`}
+															value={choice}
+															key={`${question._id}: ${choiceIndex}`}
+															onChange={(event) => {
+																setQuizAnswers({
+																	...quizAnswers,
+																	[event.target.name]: event.target.value,
+																});
+															}}
+														/>
+														{choice}
+													</div>
+												);
+											})}
+										</Card.Text>
+									</Card.Body>
+								</Card>
 							</div>
 						);
 					})
@@ -85,7 +95,11 @@ function DisplayQuiz() {
 				<div>'Loading quiz...'</div>
 			)}
 			<Link to='/score'>
-				<button className='quiz-submit-button'>Submit</button>
+				<Button
+				type='button'
+				className='quiz-submit-button'>
+					Submit
+				</Button>
 			</Link>
 		</form>
 	);

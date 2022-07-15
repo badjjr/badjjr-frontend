@@ -37,9 +37,9 @@ function Categories() {
 			{newArr.map((category) => (
 				<Link
 					to={`/categories/${category}`}
-					key={category}
-					className='category-list'>
-					<ul>
+					className='category-link'
+					key={category}>
+					<ul className='category-list'>
 						<li className='category-item'>{category.toUpperCase()}</li>
 					</ul>
 				</Link>

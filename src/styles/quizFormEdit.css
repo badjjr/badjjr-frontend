@@ -1,4 +1,14 @@
 .userNote {
 	font-style: italic;
 	color: gray;
+	margin: 0;
+	margin-top: 10px;
+}
+
+.form-label {
+	margin: 0px;
+}
+
+.form-control {
+	margin-top: 10px;
 }

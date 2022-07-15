@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import '../styles/quizDeleteAndEdit.css'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 function QuizDeleteAndEdit({ id, title, category }) {
 	const navigate = useNavigate();
@@ -36,18 +39,31 @@ function QuizDeleteAndEdit({ id, title, category }) {
 
 	return (
 		<>
-			<Link to={`/quiz/${id}`}>
-				<div>
-					<h3> Title: {title} </h3>
-					<h4> Category: {category} </h4>
-				</div>
-			</Link>
-			<button type='button' onClick={handleDelete}>
-				Delete
-			</button>
-			<button type='button' onClick={handleEdit}>
-				Edit
-			</button>
+			<Card>
+				<Card.Body>
+					<Card.Title>{title}</Card.Title>
+					<Card.Subtitle>{category}</Card.Subtitle>
+				</Card.Body>
+				<Link className='take-quiz-link'to={`/quiz/${id}`}>
+					<Button
+					type='button'
+					id='take-quiz-btn'>
+						Take Quiz!
+					</Button>
+				</Link>
+				<Button
+				type='button'
+				id='delete-quiz-btn'
+				onClick={handleDelete}>
+					Delete
+				</Button>
+				<Button			
+				type='button'
+				id='edit-quiz-btn'
+				onClick={handleEdit}>
+					Edit
+				</Button>			
+			</Card>
 		</>
 	);
 }

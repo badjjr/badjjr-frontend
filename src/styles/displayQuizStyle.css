@@ -1,36 +1,42 @@
-/* .take-quiz-form {
-
-}
 .quiz-title {
-
-} */
+    padding-top: 20px;
+    color: white;
+}
 .quiz-question-container {
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid white; */
     display:flex;
-    flex-wrap: wrap;
+    align-items: center;
     flex-direction: column;
     padding: 10px;
     padding-bottom: 20px;
-    margin: 10px;
     gap: 8px;
+    color: white;
 }
+
 .quiz-question-number {
-    color: gray;
+    color: white;
     margin: 0px;
 }
 .question-number {
-    color: rgb(61, 58, 58);
+    color: white;
 }
-.quiz-question {
-    text-align: left;
+
+.quiz-question,
+.card-text {
+    background-color: #564591;
 }
+
+.input-button {
+    margin-right: 10px;
+}
+
 .quiz-answer-choice {
     text-align: left;
-    align-self: left;
+    background-color: #564591;
 }
+
 .quiz-submit-button {
-    background-color: green;
-    width: 100px;
-    height: 40px;
+    background-color: #ff9478;
     font-size: 20px;
+    margin-bottom: 20px;
 }
