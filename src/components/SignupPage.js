@@ -23,8 +23,8 @@ function SignupPage() {
 			try {
 				const res = await axios
 					.post('https://badjjr.herokuapp.com/api/users', {
-						username: e.currentTarget['username'].value,
-						password: e.currentTarget['password'].value,
+						username: e.currentTarget['username-signup'].value,
+						password: e.currentTarget['password-signup'].value,
 					})
 					.then((res) => {
 						console.log('Success! A new user!', res);
