@@ -18,7 +18,7 @@ function SignupPage() {
 			setError('');
 			try {
 				const res = await axios
-					.post('https://badjjr.herokuapp.com/api/createUser', {
+					.post('https://badjjr.herokuapp.com//api/user/new', {
 						username: e.currentTarget['username'].value,
 						password: e.currentTarget['password'].value,
 					})

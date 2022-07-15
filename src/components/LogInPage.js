@@ -18,7 +18,7 @@ function LoginPage() {
 			setError('');
 			try {
 				const res = await axios
-					.post('https://badjjr.herokuapp.com/api/showUser', {
+					.post('https://badjjr.herokuapp.com/api/user', {
 						username: e.currentTarget['username'].value,
 						password: e.currentTarget['password'].value,
 					})
