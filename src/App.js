@@ -53,8 +53,8 @@ function App() {
 				<main>
 					<Routes>
 						<Route path='/' element={<AccessPage />} />
-						<Route path='/sign-up' element={<SignupPage />} />
-						<Route path='/log-in' element={<LoginPage />} />
+						<Route path='/signup' element={<SignupPage />} />
+						<Route path='/login' element={<LoginPage />} />
 						{/* Protected routes start here. */}
 						<Route element={<ProtectedRoute />}>
 							<Route path='/home' element={<Home />} />
