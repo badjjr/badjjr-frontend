@@ -51,7 +51,7 @@ function SignupPage() {
 
 	return (
 		<div>
-			<p>Join the badjjr clan!</p>
+			<p className='join-msg'>Join the badjjr clan!</p>
 			<Form onSubmit={handleSignupSubmit}>
 				<Form.Group>
 					<Form.Label htmlFor='username'>Username</Form.Label>

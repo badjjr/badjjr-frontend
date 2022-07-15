@@ -30,8 +30,13 @@ function Home() {
 						Make a Quiz
 					</Button>
 				</Link>
+				<Button
+				type='button'
+				onClick={handleLogoutClick}
+				id='logout-btn'>
+					Log Out
+				</Button>
 			</div>
-			<button onClick={handleLogoutClick}>Log Out</button>
 		</div>
 	);
 }

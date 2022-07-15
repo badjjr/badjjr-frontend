@@ -52,13 +52,13 @@ function LoginPage() {
 
 	return (
 		<div>
-			<p>Welcome back!</p>
+			<p className='welcome-back'>Welcome back!</p>
 			<Form onSubmit={handleLoginSubmit} className='form-container'>
 				<Form.Group>
 					<Form.Label htmlFor='username'>Username</Form.Label>
 					<Form.Control
 						type='text'
-						id='username-box'
+						id='username-login'
 						placeholder='bradjjr'
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -70,7 +70,7 @@ function LoginPage() {
 					<Form.Label htmlFor='password'>Password</Form.Label>
 					<Form.Control
 						type='password'
-						id='password-box'
+						id='password-login'
 						minLength='8'
 						placeholder='At least 8 characters'
 						required
