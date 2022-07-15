@@ -18,15 +18,13 @@ function App() {
 	// Use Context to share the following states between components.
 	const [quizFormData, setQuizFormData] = useState({});
 	const [quizQuestions, setQuizQuestions] = useState([]);
-  const [quizId, setQuizId] = useState()
+	const [quizId, setQuizId] = useState();
 	const [updatedQuizId, setUpdatedQuizId] = useState('');
-  const [quizAnswers, setQuizAnswers] = useState([]);
+	const [quizAnswers, setQuizAnswers] = useState([]);
 
 	return (
 		<DataContext.Provider
 			value={{
-				quizAnswers,
-				setQuizAnswers,
 				quizFormData,
 				setQuizFormData,
 				quizQuestions,
@@ -35,13 +33,16 @@ function App() {
 				setUpdatedQuizId,
 				quizId,
 				setQuizId,
+				quizAnswers,
+				setQuizAnswers,
 			}}>
 			<div>
 				<header>
-						<Header />
+					<Header />
 				</header>
 				<main>
 					<Routes>
+						<Route path='/' element={<Access />} />
 						<Route path='/' element={<Home />} />
 						<Route path='/categories' element={<Categories />} />
 						<Route
@@ -55,13 +56,13 @@ function App() {
 							path='/quiz-questions-edit'
 							element={<QuizQuestionsEdit />}
 						/>
-            <Route path='/quiz/:id' element={<DisplayQuiz />} />
-					  <Route path='/score' element={<Score />} />
+						<Route path='/quiz/:id' element={<DisplayQuiz />} />
+						<Route path='/score' element={<Score />} />
 					</Routes>
 				</main>
 			</div>
 		</DataContext.Provider>
-)
+	);
 }
 
 export default App;

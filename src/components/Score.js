@@ -5,8 +5,8 @@ import { DataContext } from '../dataContext';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-function Score(props) {
-	const { quizAnswers, setQuizAnswers, quizId } = useContext(DataContext);
+function Score() {
+	const { quizAnswers, quizId } = useContext(DataContext);
 	const [userAnswers, setUserAnswers] = useState();
 	const [correctAnswers, setCorrectAnswers] = useState();
 	const [userCorrectAnswers, setUserCorrectAnswers] = useState();

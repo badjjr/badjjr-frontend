@@ -5,7 +5,7 @@ import { DataContext } from '../dataContext';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function DisplayQuiz(props) {
+function DisplayQuiz() {
 	const [quizData, setQuizData] = useState([]);
 	const [quizAnswerChoices, setQuizAnswerChoices] = useState([]);
 	const [quizQuestionData, setQuizQuestionData] = useState([])
