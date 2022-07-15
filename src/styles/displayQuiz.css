@@ -3,7 +3,6 @@
     color: white;
 }
 .quiz-question-container {
-    /* border-bottom: 1px solid white; */
     display:flex;
     align-items: center;
     flex-direction: column;
