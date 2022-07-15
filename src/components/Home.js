@@ -25,7 +25,7 @@ function Home() {
 						Take a Quiz
 					</Button>
 				</Link>
-				<Link to='/quiz-form' id='link-make'>
+				<Link to='/quizForm' id='link-make'>
 					<Button type='button' id='make-quiz'>
 						Make a Quiz
 					</Button>

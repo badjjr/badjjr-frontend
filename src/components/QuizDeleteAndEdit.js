@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/quizDeleteAndEdit.css';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -30,7 +29,7 @@ function QuizDeleteAndEdit({ id, title, category }) {
 			);
 			console.log(response);
 			if (response.status === 200) {
-				navigate(`/quiz-form-edit/${response.data._id}`);
+				navigate(`/quizFormEdit/${response.data._id}`);
 			}
 		} catch (error) {
 			console.log(error);
