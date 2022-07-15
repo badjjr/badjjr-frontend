@@ -10,3 +10,11 @@
 	margin-top: 15px;
 	margin-bottom: 0;
 }
+
+@media screen and (min-width: 670px) {
+	.quiz-form {
+		display: inline-block;
+		width: 30%;
+
+	}
+}

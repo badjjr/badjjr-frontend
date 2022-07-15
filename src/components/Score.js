@@ -4,9 +4,10 @@ import { useState, useEffect, useContext } from 'react';
 import { DataContext } from '../dataContext';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button'
 
-function Score(props) {
-	const { quizAnswers, setQuizAnswers, quizId } = useContext(DataContext);
+function Score() {
+	const { quizAnswers, quizId } = useContext(DataContext);
 	const [userAnswers, setUserAnswers] = useState();
 	const [correctAnswers, setCorrectAnswers] = useState();
 	const [userCorrectAnswers, setUserCorrectAnswers] = useState();
@@ -62,8 +63,12 @@ function Score(props) {
 						You answered {userCorrectAnswers.length} of {correctAnswers.length}{' '}
 						questions correctly.
 					</p>
-					<Link to='/'>
-						<button className='return-home-btn'>Return Home</button>
+					<Link to='/home'>
+						<Button
+						type='button'
+						className='return-home-btn'>
+							Return Home
+						</Button>
 					</Link>
 				</div>
 			) : (

@@ -5,7 +5,7 @@ import '../styles/headerStyle.css';
 function Header() {
 	return (
 		<h1 className='badger-logo'>
-			<Link className='badger-home-link' to='/'>
+			<Link className='badger-home-link' to='/home'>
 				🦡
 			</Link>
 		</h1>

@@ -1,5 +1,7 @@
 * {
 	box-sizing: border-box;
+	background-color: #45377e;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 body {
@@ -11,11 +13,6 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
-}
-
 h1 {
 	margin-bottom: 0;
 	text-align: center;
@@ -25,10 +22,7 @@ h1 {
 
 a {
 	text-decoration: none;
-}
-
-footer {
-	text-align: center;
+	color: inherit;
 }
 
 span {

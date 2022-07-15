@@ -4,14 +4,19 @@
 
 .category-container {
 	display: grid;
-	grid-template-rows: 140px 140px 140px;
-	grid-template-columns: 167px 167px;
+	grid-template-rows: 125px 125px 125px;
+	grid-template-columns: 120px 120px;
 	border-style: 10px black;
 	justify-content: center;
+	padding-top: 30px;
+}
+
+.category-link {
+	padding: 10px;
 }
 
 .category-list {
-	text-decoration: none;
+	padding:0;
 }
 
 .category-item {
@@ -22,4 +27,6 @@
 	border-radius: 10px;
 	padding-bottom: 40px;
 	padding-top: 40px;
+	color: white;
+	background-color: #ff9478;
 }

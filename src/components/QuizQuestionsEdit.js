@@ -2,20 +2,19 @@ import { useContext } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../styles/quizQuestionsEdit.css'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function QuizQuestionsEdit() {
 	const { quizFormData, quizQuestions, setQuizQuestions, updatedQuizId } =
 		useContext(DataContext);
-
 	const navigate = useNavigate();
 
 	//============================================================================
 	// ADDING INCORRECT ANSWERS
 	//============================================================================
 	const handleIncorrectAnswersAdd = (questionIndex) => {
-		console.log(questionIndex);
 		// By default, there is an input field for just one incorrect answer.
 		// Allow the user to add an input field for another incorrect answer.
 		const updatedIncorrectAnswers = quizQuestions.map((question, index) => {
@@ -88,11 +87,11 @@ function QuizQuestionsEdit() {
 						questions: updatedQuestions,
 					})
 					.then((res) => {
-						console.log('Quiz successfully added!', res);
+						console.log('Success! An updated quiz!', res);
 						navigate(`/quiz/${updatedQuizId}`);
 					});
 			} catch (error) {
-				console.log('Uh-oh! Something went wrong...', error);
+				console.log("Uh-oh! The quiz wasn't updated...", error);
 			}
 		};
 		patch();
@@ -161,13 +160,13 @@ function QuizQuestionsEdit() {
 								type='button'
 								id='add-answer-button'
 								onClick={() => handleIncorrectAnswersAdd(questionIndex)}>
-								Add answer choice
+								Add Answer
 							</Button>
 							<Button
 								type='button'
 								id='delete-answer-button'
 								onClick={() => handleIncorrectAnswersDelete(questionIndex)}>
-								Delete answer choice
+								Delete Answer
 							</Button>
 						</div>
 					</div>

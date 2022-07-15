@@ -9,7 +9,6 @@ import Button from 'react-bootstrap/Button';
 function QuizQuestions() {
 	const { quizQuestions, setQuizQuestions, quizFormData } =
 		useContext(DataContext);
-
 	const navigate = useNavigate();
 
 	//============================================================================
@@ -92,13 +91,13 @@ function QuizQuestions() {
 						questions: updatedQuestions,
 					})
 					.then((res) => {
-						console.log('Quiz successfully added!', res);
+						console.log('Success! A new quiz!', res);
 						// Using the new quiz's generated id, navigate to a separate page
 						// that displays the new quiz.
 						navigate(`/quiz/${res.data[res.data.length - 1]._id}`);
 					});
 			} catch (error) {
-				console.log('Uh-oh! Something went wrong...', error);
+				console.log("Uh-oh! The quiz wasn't added...", error);
 			}
 		};
 		post();
@@ -163,13 +162,13 @@ function QuizQuestions() {
 								type='button'
 								id='add-answer-button'
 								onClick={() => handleIncorrectAnswersAdd(questionIndex)}>
-								Add answer choice
+								Add Answer
 							</Button>
 							<Button
 								type='button'
 								id='delete-answer-button'
 								onClick={() => handleIncorrectAnswersDelete(questionIndex)}>
-								Delete answer choice
+								Delete Answer
 							</Button>
 						</div>
 					</div>

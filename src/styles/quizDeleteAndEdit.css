@@ -1,0 +1,28 @@
+.card {
+  display: inline-block;
+  background-color: #564591;
+  width: 20rem;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: white;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.card-body,
+.card-title,
+.card-subtitle {
+  background-color: #564591;
+}
+
+.take-quiz-link {
+ background-color: #564591
+}
+
+#delete-quiz-btn,
+#edit-quiz-btn,
+#take-quiz-btn {
+  margin: 10px;
+  background-color: #ff9478;
+  font-size: 14px;
+}
