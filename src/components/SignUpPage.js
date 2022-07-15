@@ -1,48 +1,51 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function SignUpPage() {
-	const { username, setUsername } = useContext(DataContext);
-
+function SignupPage() {
+	const { username, setUsername, setIsLoggedIn } = useContext(DataContext);
 	const navigate = useNavigate();
-
-	// For error handling
+	// Use state to handle errors.
 	const [error, setError] = useState('');
 
-	const handleSignUpSubmit = (e) => {
+	const handleSignupSubmit = (e) => {
 		e.preventDefault();
-
 		// Send a POST request to add a new user to the database.
 		const post = async () => {
 			setError('');
 			try {
 				const res = await axios
-					.post('http://localhost:8000/api/createUser', {
+					.post('https://badjjr.herokuapp.com/api/createUser', {
 						username: e.currentTarget['username'].value,
 						password: e.currentTarget['password'].value,
 					})
 					.then((res) => {
-						console.log('New user successfully added!', res);
+						console.log('Success! A new user!', res);
+						// Automatically log the user in upon successful signup.
+						setIsLoggedIn(true);
 						navigate('/home');
 					});
 			} catch (error) {
-				console.log('Uh-oh! Something went wrong...', error);
+				console.log("Uh-oh! A new user wasn't created...", error);
 				setError(
-					'Hm...something went wrong. Please contact us at support@badjjr.com.'
+					'Hm...something went wrong. Please try again or contact us at support@badjjr.com.'
 				);
 			}
 		};
 		post();
 	};
 
+	useEffect((e) => {
+		setUsername('');
+	}, []);
+
 	return (
 		<div>
-			<p>Join the clan!</p>
-			<Form onSubmit={handleSignUpSubmit}>
+			<p>Join the badjjr clan!</p>
+			<Form onSubmit={handleSignupSubmit}>
 				<Form.Group>
 					<Form.Label htmlFor='username'>Username</Form.Label>
 					<Form.Control
@@ -65,6 +68,7 @@ function SignUpPage() {
 						required
 					/>
 				</Form.Group>
+
 				<Button variant='primary' type='submit'>
 					Sign Up
 				</Button>
@@ -74,4 +78,4 @@ function SignUpPage() {
 	);
 }
 
-export default SignUpPage;
+export default SignupPage;

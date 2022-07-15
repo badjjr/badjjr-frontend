@@ -9,9 +9,7 @@ import Button from 'react-bootstrap/Button';
 function QuizFormEdit() {
 	const { quizFormData, setQuizFormData, setQuizQuestions, setUpdatedQuizId } =
 		useContext(DataContext);
-
 	const navigate = useNavigate();
-
 	const { id } = useParams();
 
 	// On page load, grab the data of the quiz that is to be edited.
@@ -21,7 +19,7 @@ function QuizFormEdit() {
 				const res = await axios(
 					`https://badjjr.herokuapp.com/api/quizzes/${id}`
 				).then((res) => {
-					console.log('Success! Here is the quiz:', res);
+					console.log("Success! Here's the quiz:", res);
 					setQuizFormData(res.data);
 					setUpdatedQuizId(res.data._id);
 				});
@@ -34,7 +32,8 @@ function QuizFormEdit() {
 
 	//============================================================================
 	// SUBMITTING THE FORM
-	// Update state, send a PATCH request, and navigate to the QuizQuestionsEdit component.
+	// Update state, send a PATCH request, and navigate to the QuizQuestionsEdit
+	// component.
 	//============================================================================
 	const handleQuizFormSubmit = (e) => {
 		e.preventDefault();

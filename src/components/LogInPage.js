@@ -1,48 +1,51 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function LogInPage() {
-	const { username, setUsername } = useContext(DataContext);
-
+function LoginPage() {
+	const { username, setUsername, setIsLoggedIn } = useContext(DataContext);
 	const navigate = useNavigate();
-
-	// For error handling
+	// Use state to handle errors.
 	const [error, setError] = useState('');
 
-	const handleLogInSubmit = (e) => {
+	const handleLoginSubmit = (e) => {
 		e.preventDefault();
-
-		// Send a POST request to verify the returning user's info.
+		// Send a POST request to authorize a user.
 		const post = async () => {
 			setError('');
 			try {
 				const res = await axios
-					.post('http://localhost:8000/api/showUser', {
+					.post('https://badjjr.herokuapp.com/api/showUser', {
 						username: e.currentTarget['username'].value,
 						password: e.currentTarget['password'].value,
 					})
 					.then((res) => {
-						console.log('We have a returning user!', res);
+						console.log('We have authorized the user!', res);
+						// Once authorized, navigate the user to Home.
+						setIsLoggedIn(true);
 						navigate('/home');
 					});
 			} catch (error) {
-				console.log('Uh-oh! Something went wrong...', error);
+				console.log("Uh-oh! The user wasn't authorized...", error);
 				setError(
-					'Hm...something went wrong. Please contact us at support@badjjr.com.'
+					'Hm...something went wrong. Please try again or contact us at support@badjjr.com.'
 				);
 			}
 		};
 		post();
 	};
 
+	useEffect((e) => {
+		setUsername('');
+	}, []);
+
 	return (
 		<div>
 			<p>Welcome back!</p>
-			<Form onSubmit={handleLogInSubmit}>
+			<Form onSubmit={handleLoginSubmit}>
 				<Form.Group>
 					<Form.Label htmlFor='username'>Username</Form.Label>
 					<Form.Control
@@ -65,6 +68,7 @@ function LogInPage() {
 						required
 					/>
 				</Form.Group>
+
 				<Button variant='primary' type='submit'>
 					Log In
 				</Button>
@@ -73,4 +77,4 @@ function LogInPage() {
 		</div>
 	);
 }
-export default LogInPage;
+export default LoginPage;

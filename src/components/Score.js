@@ -62,7 +62,7 @@ function Score() {
 						You answered {userCorrectAnswers.length} of {correctAnswers.length}{' '}
 						questions correctly.
 					</p>
-					<Link to='/'>
+					<Link to='/home'>
 						<button className='return-home-btn'>Return Home</button>
 					</Link>
 				</div>
