@@ -1,22 +1,57 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function SignUpPage() {
-	const { username, setUsername } = useContext(DataContext);
+function SignupPage() {
+	const { username, setUsername, setPassword, setIsLoggedIn } =
+		useContext(DataContext);
 	const navigate = useNavigate();
+	// Use state to handle errors.
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState('');
 
-	const handleSignUpSubmit = () => {
-		console.log(username);
-		navigate('/home');
+	const handleSignupSubmit = (e) => {
+		e.preventDefault();
+		// Send a POST request to add a new user to the database.
+		const post = async () => {
+			setError('');
+			setLoading(true);
+			try {
+				const res = await axios
+					.post('https://badjjr.herokuapp.com/api/user/new', {
+						username: e.currentTarget['username'].value,
+						password: e.currentTarget['password'].value,
+					})
+					.then((res) => {
+						console.log('Success! A new user!', res);
+						// Automatically log the user in upon successful signup.
+						setIsLoggedIn(true);
+						setLoading(false);
+						navigate('/home');
+					});
+			} catch (error) {
+				setLoading(false);
+				console.log("Uh-oh! A new user wasn't created...", error);
+				setError(
+					'Hm...something went wrong. Please try again or contact us at support@badjjr.com.'
+				);
+			}
+		};
+		post();
 	};
+
+	useEffect((e) => {
+		setUsername('');
+		setPassword('');
+	}, []);
 
 	return (
 		<div>
-			<p>Join the clan!</p>
-			<Form onSubmit={handleSignUpSubmit}>
+			<p>Join the badjjr clan!</p>
+			<Form onSubmit={handleSignupSubmit}>
 				<Form.Group>
 					<Form.Label htmlFor='username'>Username</Form.Label>
 					<Form.Control
@@ -34,17 +69,20 @@ function SignUpPage() {
 					<Form.Control
 						type='password'
 						id='password'
-						minlength='8'
+						minLength='8'
 						placeholder='At least 8 characters'
 						required
 					/>
 				</Form.Group>
+
 				<Button variant='primary' type='submit'>
-					Sign Up!
+					Sign Up
 				</Button>
 			</Form>
+			{loading && 'Signing up...'}
+			{error && error}
 		</div>
 	);
 }
 
-export default SignUpPage;
+export default SignupPage;

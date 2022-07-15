@@ -1,10 +1,16 @@
 import { useContext } from 'react';
 import { DataContext } from '../dataContext';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../styles/home.css';
 
 function Home() {
-	const { username } = useContext(DataContext);
+	const { username, setIsLoggedIn } = useContext(DataContext);
+	const navigate = useNavigate();
+
+	const handleLogoutClick = (e) => {
+		setIsLoggedIn(false);
+		navigate('/');
+	};
 
 	return (
 		<div className='home-div'>
@@ -18,8 +24,8 @@ function Home() {
 				<Link to='/quiz-form' style={{ textDecoration: 'none' }}>
 					<li className='list-item'>Make a Quiz</li>
 				</Link>
-				{/* <Link to='/myAccount'><li>Go to My Account</li></Link> */}
 			</ul>
+			<button onClick={handleLogoutClick}>Log Out</button>
 		</div>
 	);
 }
