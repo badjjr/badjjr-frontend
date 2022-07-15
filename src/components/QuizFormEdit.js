@@ -1,5 +1,5 @@
 import '../styles/quizFormEdit.css';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { DataContext } from '../dataContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
