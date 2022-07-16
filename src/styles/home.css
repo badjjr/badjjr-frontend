@@ -12,7 +12,7 @@
 
 .home-list {
   display: grid;
-  grid-template-rows: 70px 70px;
+  grid-template-rows: 70px 70px 70px;
   grid-template-columns: 150px;
   padding: 0;
   justify-content: center;
@@ -20,8 +20,14 @@
 }
 
 #take-quiz,
-#make-quiz {
+#make-quiz,
+#logout-btn {
   background-color: #ff9478;
+  color: black;
+}
+
+#logout-btn {
+  margin-top: 15px;
 }
 
 .list-item {
