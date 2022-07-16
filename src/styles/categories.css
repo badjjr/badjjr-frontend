@@ -5,7 +5,7 @@
 .category-container {
 	display: grid;
 	grid-template-rows: 125px 125px 125px;
-	grid-template-columns: 120px 120px;
+	grid-template-columns: 150px 150px;
 	border-style: 10px black;
 	justify-content: center;
 	padding-top: 30px;
@@ -29,4 +29,24 @@
 	padding-top: 40px;
 	color: black;
 	background-color: #ff9478;
+}
+
+@media screen and (min-width: 670px) {
+	.category-container {
+		display: grid;
+		grid-template-rows: 200px 200px 200px;
+		grid-template-columns: 300px 300px 300px;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.category-list {
+		display: flex;
+		justify-content: center;
+		margin: 0;
+	}
+
+	.category-item {
+		width: 80%;
+	}
 }

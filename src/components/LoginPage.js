@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import '../styles/loginPage.css'
 
 function LoginPage() {
-	const { username, setUsername, setPassword, setIsLoggedIn, setToken } =
+	const { username, setUsername, setPassword, setIsLoggedIn } =
 		useContext(DataContext);
 	const navigate = useNavigate();
 	// Use state to handle errors.
@@ -30,7 +30,6 @@ function LoginPage() {
 						console.log('We have authorized the user!', res);
 						// Once authorized, navigate the user to Home.
 						setIsLoggedIn(true);
-						setToken(res.data.token);
 						setLoading(false);
 						navigate('/home');
 					});
